@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="apple-touch-icon" href="Favicon/favicon-32x32.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redwood-Perch-Antipolo</title>
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">
+    <img src="Logo/RedwoodLogo.png" alt="Redwood Perch Antipolo logo">
+  </div>
+
+  <nav class="nav" id="mainNav">
+    <a href="#home">Home</a>
+    <a href="#units">Units</a>
+    <a href="#lots">Lots</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#location">Location</a>
+    <a href="#contacts">Contacts</a>
+    <a href="#" class="nav-cta-link" onclick="openInquire(); return false;">INQUIRE NOW</a>
+  </nav>
+
+  <div class="header-cta">
+    <button onclick="openInquire()">INQUIRE NOW</button>
+  </div>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="Videos/perch-website-vid.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <small>Antipolo City</small>
+    <h1>THE PERCH & SUNVALLEY ESTATES</h1>
+    <p>Discover project listings, modern homes, and investment opportunities</p>
+
+    <div class="hero-buttons">
+      <a href="#units" class="primary-btn">BROWSE UNITS</a>
+      <button class="secondary-btn" onclick="openInquire()">INQUIRE NOW</button>
+    </div>
+  </div>
+</section>
+
+<!-- UNITS -->
+<section class="section units-section" id="units">
+
+  <div class="section-container">
+
+    <div id="units-header">
+      <h2>Units</h2>
+      <p>Available House & Lots</p>
+    </div>
+
+    <div class="cards-wrapper">
+      <button class="scroll-btn left" onclick="scrollCards(-1)">&#10094;</button>
+
+      <div class="cards" id="cardsContainer">
+
+        <div class="card" onclick="openModal('rochester')">
+          <img src="Houses/rochester.png" alt="Rochester model house">
+          <h3>Rochester</h3>
+          <p>Modern 2-storey family home designed for comfort and space.</p>
+        </div>
+
+        <div class="card" onclick="openModal('fairmont')">
+          <img src="Houses/Fairmont/fairmont.png" alt="Fairmont model house">
+          <h3>Fairmont</h3>
+          <p>Modern two-story home with clean lines and a flat roof.</p>
+        </div>
+
+        <div class="card" onclick="openModal('somerset')">
+          <img src="Houses/somerset.png" alt="Somerset model house">
+          <h3>Somerset</h3>
+          <p>Elegant home with wide interiors and natural lighting.</p>
+        </div>
+
+        <div class="card" onclick="openModal('cascade-downhill')">
+          <img src="Houses/downhill.png" alt="Cascade Downhill model house">
+          <h3>Cascade: Downhill</h3>
+          <p>Hillside unit with panoramic views and premium layout.</p>
+        </div>
+
+        <div class="card" onclick="openModal('cascade-uphill')">
+          <img src="Houses/cascade.png" alt="Cascade Uphill model house">
+          <h3>Cascade: Uphill</h3>
+          <p>Smart design optimized for airflow and lighting.</p>
+        </div>
+
+      </div>
+
+      <button class="scroll-btn right" onclick="scrollCards(1)">&#10095;</button>
+    </div>
+
+    <div class="see-more-wrapper">
+      <button class="see-more-btn" id="seeMoreBtn" onclick="seeMoreCards()">
+        SEE MORE <span class="see-more-arrow">&#8594;</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOTS -->
+<section class="section units-section" id="lots">
+
+  <div class="section-container">
+
+    <div id="lots-header">
+      <h2>Lots</h2>
+      <p>Available Lots for Sale</p>
+    </div>
+
+    <div class="cards-wrapper">
+      <button class="scroll-btn left" onclick="scrollLotCards(-1)">&#10094;</button>
+
+      <div class="cards" id="lotCardsContainer">
+
+        <div class="card" onclick="openLotModal('Perch III: Blk 14, Lot 10')">
+          <img src="Lots/b14l10.png" alt="Perch III: Blk 14, Lot 10">
+          <h3>Perch III: Blk 14, Lot 10</h3>
+          <p>514 sqm lot surrounded by trees and greenery.</p>
+        </div>
+
+        <div class="card" onclick="openLotModal('Perch III: Blk 14, Lot 9')">
+          <img src="Lots/bl14l9.png" alt="Perch III: Blk 14, Lot 9">
+          <h3>Perch III: Blk 14, Lot 9</h3>
+          <p>520 sqm corner lot along a curved road. (SOLD)</p>
+        </div>
+
+        <div class="card" onclick="openLotModal('Perch III: Blk 4, Lot 3')">
+          <img src="Lots/b4l3.png" alt="Perch III: Blk 4, Lot 3">
+          <h3>Perch III: Blk 4, Lot 3</h3>
+          <p>567 sqm residential lot along the road, ideal for development.</p>
+        </div>
+
+        <div class="card" onclick="openLotModal('Perch I: Blk 12, Lot 8')">
+          <img src="Lots/bl12l8.png" alt="Perch I: Blk 12, Lot 8">
+          <h3>Perch I: Blk 12, Lot 8</h3>
+          <p>657 sqm rectangular lot beside a concrete road.</p>
+        </div>
+
+        <div class="card" onclick="openLotModal('Perch I: Blk 8, Lot 4')">
+          <img src="Lots/bl8l4_01435.png" alt="Perch I: Blk 8, Lot 4">
+          <h3>Perch I: Blk 8, Lot 4</h3>
+          <p>526 sqm elevated lot with scenic surroundings.</p>
+        </div>
+
+        <div class="card" onclick="openLotModal('Perch I: Blk 10, Lot 6')">
+          <img src="Lots/bl10l6.png" alt="Perch I: Blk 10, Lot 6">
+          <h3>Perch I: Blk 10, Lot 6</h3>
+          <p>604 sqm lot with lush greenery and paved access.</p>
+        </div>
+
+        <div class="card" onclick="openLotModal('Perch I: Blk 10, Lot 12')">
+          <img src="Lots/bl10l12.png" alt="Perch I: Blk 10, Lot 12">
+          <h3>Perch I: Blk 10, Lot 12</h3>
+          <p>604 sqm roadside lot with open terrain.</p>
+        </div>
+
+        <div class="card" onclick="openLotModal('Perch I: Blk 9, Lot 8')">
+          <img src="Lots/bl9l8.png" alt="Perch I: Blk 9, Lot 8">
+          <h3>Perch I: Blk 9, Lot 8</h3>
+          <p>502 sqm lot in a hillside residential area.</p>
+        </div>
+
+      </div>
+
+      <button class="scroll-btn right" onclick="scrollLotCards(1)">&#10095;</button>
+    </div>
+
+    <div class="see-more-wrapper">
+      <button class="see-more-btn" id="lotSeeMoreBtn" onclick="seeMoreLotCards()">
+        SEE MORE <span class="see-more-arrow">&#8594;</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities-section" id="amenities">
+  <div class="amenities-container">
+
+    <div class="amenities-header">
+      <h2>Amenities</h2>
+      <p>Explore the premium lifestyle features inside the community.</p>
+    </div>
+
+    <div class="amenities-gallery">
+
+      <div class="amenities-main-col">
+
+        <div class="amenities-view-tabs">
+          <button class="active" id="amenityPhotoTab" onclick="showAmenityPhoto()">PHOTO</button>
+          <button id="amenityVideoTab" onclick="showAmenityVideo()">VIDEO</button>
+        </div>
+
+        <div class="amenities-main">
+          <img id="amenityMainImg" src="Amenities/alfresco.jpg" alt="Featured amenity">
+          <iframe id="amenityMainVideo" class="yt-frame" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+
+          <div class="amenity-label" id="amenityLabel">
+            Alfresco Lounge
+          </div>
+        </div>
+
+      </div>
+
+      <div class="amenities-side">
+
+        <div class="amenities-dropdown" id="amenityDropdown">
+          <button type="button" class="dropdown-toggle" id="dropdownToggle">
+            <span id="dropdownLabel">Alfresco Lounge</span>
+            <span class="dropdown-arrow">▾</span>
+          </button>
+
+          <div class="dropdown-menu" id="dropdownMenu">
+            <button class="dropdown-option active" data-id="alfresco">Alfresco Lounge</button>
+            <button class="dropdown-option" data-id="amphitheater">Amphitheater</button>
+            <button class="dropdown-option" data-id="bball-outdoor">Outdoor Basketball & Tennis Court</button>
+            <button class="dropdown-option" data-id="bball-indoor">Indoor Basketball Court</button>
+            <button class="dropdown-option" data-id="tt-billiards">Table Tennis & Billiards</button>
+            <button class="dropdown-option" data-id="driving-range">Driving Range</button>
+            <button class="dropdown-option" data-id="playground">Playground</button>
+            <button class="dropdown-option" data-id="diamond-park">Diamond Park</button>
+            <button class="dropdown-option" data-id="wyndells">Wyndell's</button>
+            <button class="dropdown-option" data-id="fishing-lagoon">Fishing Lagoon</button>
+            <button class="dropdown-option" data-id="camping-site">Camping Site</button>
+            <button class="dropdown-option" data-id="swimming-pool">Swimming Pool</button>
+            <button class="dropdown-option" data-id="sports-center">Sports Center</button>
+            <button class="dropdown-option" data-id="community-center">Community Center</button>
+            <button class="dropdown-option" data-id="gated-access">Gated Access</button>
+            <button class="dropdown-option" data-id="city-sky-view">City Sky View</button>
+          </div>
+        </div>
+
+        <div class="amenity-details" id="amenityDetails">
+          <h3 id="amenityDetailsTitle">Alfresco Lounge</h3>
+          <p id="amenityDetailsDesc"></p>
+
+          <div class="amenity-details-list">
+            <h4>Details</h4>
+
+            <div class="amenity-detail-row">
+              <span class="amenity-detail-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" fill="#fff"/></svg></span>
+              <div>
+                <span class="amenity-detail-label">Location</span>
+                <span class="amenity-detail-value" id="amenityLocation"></span>
+              </div>
+            </div>
+
+            <div class="amenity-detail-row">
+              <span class="amenity-detail-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.3" stroke="#fff" stroke-width="1.8"/><path d="M12 7.5v5l3.2 1.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <span class="amenity-detail-label">Operating Hours</span>
+                <span class="amenity-detail-value" id="amenityHours"></span>
+              </div>
+            </div>
+
+            <div class="amenity-detail-row">
+              <span class="amenity-detail-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" fill="#fff"/></svg></span>
+              <div>
+                <span class="amenity-detail-label">Features</span>
+                <span class="amenity-detail-value" id="amenityFeatures"></span>
+              </div>
+            </div>
+
+            <div class="amenity-detail-row" id="amenityCapacityRow">
+              <span class="amenity-detail-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8.5" cy="8" r="3" fill="#fff"/><circle cx="16" cy="9" r="2.3" fill="#fff" fill-opacity=".7"/><path d="M2.8 19c.6-3.4 3.2-5.5 5.7-5.5s5.1 2.1 5.7 5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M14.5 14c2 .2 3.9 2 4.4 5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></span>
+              <div>
+                <span class="amenity-detail-label">Capacity / Size</span>
+                <span class="amenity-detail-value" id="amenityCapacity"></span>
+              </div>
+            </div>
+
+            <div class="amenity-detail-row">
+              <span class="amenity-detail-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3.5L22 20H2L12 3.5z" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 9.5v5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="#fff"/></svg></span>
+              <div>
+                <span class="amenity-detail-label">Rules / Notes</span>
+                <span class="amenity-detail-value" id="amenityNotes"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="amenities-thumbs">
+
+        <button class="thumb-wrapper active" data-id="alfresco">
+            Alfresco Lounge
+        </button>
+
+        <button class="thumb-wrapper" data-id="amphitheater">
+            Amphitheater
+        </button>
+
+        <button class="thumb-wrapper" data-id="bball-outdoor">
+            Outdoor Basketball & Tennis Court
+        </button>
+
+        <button class="thumb-wrapper" data-id="bball-indoor">
+            Indoor Basketball Court
+        </button>
+
+        <button class="thumb-wrapper" data-id="tt-billiards">
+            Table Tennis & Billiards
+        </button>
+
+        <button class="thumb-wrapper" data-id="driving-range">
+            Driving Range
+        </button>
+
+        <button class="thumb-wrapper" data-id="playground">
+            Playground
+        </button>
+
+        <button class="thumb-wrapper" data-id="diamond-park">
+            Diamond Park
+        </button>
+
+        <button class="thumb-wrapper" data-id="wyndells">
+            Wyndell's
+        </button>
+
+        <button class="thumb-wrapper" data-id="fishing-lagoon">
+            Fishing Lagoon
+        </button>
+
+        <button class="thumb-wrapper" data-id="camping-site">
+            Camping Site
+        </button>
+
+        <button class="thumb-wrapper" data-id="swimming-pool">
+            Swimming Pool
+        </button>
+
+        <button class="thumb-wrapper" data-id="sports-center">
+            Sports Center
+        </button>
+
+        <button class="thumb-wrapper" data-id="community-center">
+            Community Center
+        </button>
+
+        <button class="thumb-wrapper" data-id="gated-access">
+            Gated Access
+        </button>
+
+        <button class="thumb-wrapper" data-id="city-sky-view">
+            City Sky View
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+
+  <div class="location-header">
+    <h2>Location</h2>
+    <p>Find us in one of Antipolo's most accessible and scenic residential areas.</p>
+  </div>
+
+  <div class="location-container">
+
+    <!-- LEFT: MAP -->
+    <div class="location-map">
+      <iframe
+        src="https://www.google.com/maps?q=14.6231052,121.1747639&z=17&output=embed"
+        loading="lazy"
+        title="Redwood Perch Antipolo location map">
+      </iframe>
+    </div>
+
+    <!-- RIGHT: INFO -->
+    <div class="location-info">
+
+      <div class="info-card">
+        <h3><span class="info-card-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" fill="#fff"/></svg></span>Address</h3>
+        <p>Antipolo City, Rizal, Philippines</p>
+      </div>
+
+      <div class="info-card">
+        <h3><span class="info-card-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 16v-3.5l1.6-4A2 2 0 017.5 7h9a2 2 0 011.9 1.5l1.6 4V16" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" fill="none"/><rect x="3" y="16" width="18" height="3" rx="1" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width="1.4"/><circle cx="7" cy="19" r="1.4" fill="#fff"/><circle cx="17" cy="19" r="1.4" fill="#fff"/></svg></span>Accessibility</h3>
+        <p>15–20 mins from Ortigas via Marcos Highway</p>
+      </div>
+
+      <div class="info-card">
+        <h3><span class="info-card-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 19c-1-6 2-13 14-14 1 10-4 14-10 14-1.5 0-3-.3-4-.5z" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 18C10 13 13 10 18 6" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></span>Nearby Landmarks</h3>
+        <ul>
+          <li>✔ SM Masinag</li>
+          <li>✔ Antipolo Cathedral</li>
+          <li>✔ Vista Mall Antipolo</li>
+          <li>✔ Marcos Highway Business District</li>
+        </ul>
+      </div>
+
+      <a
+        href="https://www.google.com/maps/dir/?api=1&destination=14.6231052,121.1747639"
+        target="_blank"
+        class="location-btn directions-btn"
+      >
+        GET DIRECTIONS
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER / CONTACTS -->
+<footer class="footer" id="contacts">
+
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <img src="Logo/RedwoodLogo.png" alt="Redwood Perch Antipolo logo">
+      <p>Redwood-The Perch-Antipolo — Premium homes built for modern living in Antipolo City.</p>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="footer-column">
+      <h3>Contacts</h3>
+
+      <a href="tel:+639150445909">Con Frias — 0915-044-5909</a>
+      <a href="tel:+639175765546">Charissa Pinto Frias — 0917-576-5546</a>
+      <a href="tel:+639778166168">Eva Frias — 0977-816-6168</a>
+      <a href="tel:+639205807126">Gilda Dionela — 0920-580-7126</a>
+      <a href="tel:+639602083721">Crizzele Cise — 0960-208-3721</a>
+      <a href="tel:+639564007101">Crizzele Cise — 0956-400-7101</a>
+
+    </div>
+
+    <!-- EMAIL -->
+    <div class="footer-column">
+      <h3>Email</h3>
+      <a href="mailto:redwood.perch1966@gmail.com">
+        redwood.perch1966@gmail.com
+      </a>
+    </div>
+
+    <!-- SOCIALS -->
+    <div class="footer-column">
+      <h3>Follow Us</h3>
+
+      <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61590744566641" target="_blank" aria-label="Facebook">
+          <img src="Socmed Icons/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/redwood_perch/" target="_blank" aria-label="Instagram">
+          <img src="Socmed Icons/ig.png" alt="Instagram">
+        </a>
+        <a href="https://www.tiktok.com/@redwood_perch_antipolo" target="_blank" aria-label="TikTok">
+          <img src="Socmed Icons/tiktok.png" alt="TikTok">
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Redwood-Perch-Antipolo. All Rights Reserved.</p>
+  </div>
+
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="unitModal">
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <div class="modal-gallery">
+      <div class="gallery-tabs">
+        <button class="active" onclick="switchModalView('photos', this)">PHOTOS</button>
+        <button onclick="switchModalView('plans', this)">FLOOR PLAN</button>
+        <button onclick="switchModalView('tour', this)">VIRTUAL TOUR</button>
+      </div>
+
+      <div id="photoView">
+        <img id="mainImage" onclick="openZoom()" alt="Unit photo">
+        <div class="thumbs" id="thumbContainer"></div>
+      </div>
+
+      <div id="planView" style="display:none;">
+        <div class="floor-tabs" id="floorTabs"></div>
+        <img id="floorPlanImage" onclick="openPlanZoom()" alt="Floor plan">
+      </div>
+
+      <div id="tourView" style="display:none;">
+        <iframe id="tourVideo" class="yt-frame" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+        <div class="tour-thumbs" id="tourThumbContainer"></div>
+      </div>
+    </div>
+
+    <div class="modal-details">
+      <h2 id="unitTitle"></h2>
+      <p id="unitDesc"></p>
+
+      <div class="price-box" id="priceBox">
+        <div class="price-main" onclick="togglePromo()">
+          <div class="price-main-text">
+            <span class="price-label" id="priceLabel">Price</span>
+            <span class="price-value" id="unitPrice"></span>
+          </div>
+          <button type="button" class="price-toggle" id="priceToggle" aria-label="Show latest promo">▾</button>
+        </div>
+
+        <div class="promo-panel" id="promoPanel">
+
+          <!-- Shown when the unit currently has no promo -->
+          <div class="promo-empty" id="promoEmpty" style="display:none;">No promo yet.</div>
+
+          <!-- Structured Cash Payment / Installment breakdown (from official price sheets) -->
+          <div class="promo-content" id="promoStructured" style="display:none;">
+
+            <div class="promo-section">
+              <h5>Cash Payment</h5>
+              <div class="promo-row"><span>Total Contract Price</span><strong id="promoTCP"></strong></div>
+              <div class="promo-row"><span id="promoDiscountLabel">Discount</span><strong id="promoDiscountAmt"></strong></div>
+              <div class="promo-row"><span>Reservation Fee</span><strong id="promoResFee"></strong></div>
+              <div class="promo-row promo-row-highlight"><span>Net Contract Price</span><strong id="promoNetCP"></strong></div>
+              <div class="promo-row promo-row-sub"><span id="promoCashMonthsLabel"></span><strong id="promoCashMonthly"></strong></div>
+            </div>
+
+            <div class="promo-section">
+              <h5 id="promoInstallmentHeader">Installment</h5>
+              <div class="promo-row"><span id="promoDPLabel">Down Payment</span><strong id="promoDP"></strong></div>
+              <div class="promo-row"><span>Reservation Fee</span><strong id="promoInstResFee"></strong></div>
+              <div class="promo-row promo-row-highlight"><span>Net Spot Down Payment</span><strong id="promoNetSpotDP"></strong></div>
+              <div class="promo-row"><span>Balance Payable in 7 Yrs</span><strong id="promoBalance"></strong></div>
+              <div class="promo-row promo-row-sub"><span id="promoTranche1Label"></span><strong id="promoTranche1Monthly"></strong></div>
+              <div class="promo-row promo-row-sub"><span id="promoTranche2Label"></span><strong id="promoTranche2Monthly"></strong></div>
+              <div class="promo-row promo-row-highlight" id="promoAmortRow"><span>Monthly Amortization</span><strong id="promoAmort"></strong></div>
+            </div>
+
+          </div>
+
+          <!-- Legacy simple promo (label / discounted price / free-text note) -->
+          <div id="promoSimple" style="display:none;">
+            <div class="promo-row">
+              <span>List Price</span>
+              <strong id="promoOriginal"></strong>
+            </div>
+            <div class="promo-row promo-row-highlight">
+              <span id="promoLabel"></span>
+              <strong id="promoDiscounted"></strong>
+            </div>
+            <p class="promo-note" id="promoNote"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <h4>PROPERTY DETAILS</h4>
+      <div class="spec-cards">
+        <div><strong id="floorArea"></strong><small>Floor Area</small></div>
+        <div><strong id="lotArea"></strong><small>Lot Area</small></div>
+        <div><strong id="beds"></strong><small>Bedrooms</small></div>
+        <div><strong id="baths"></strong><small>Bathrooms</small></div>
+        <div><strong id="parking"></strong><small>Parking</small></div>
+        <div><strong id="Interior"></strong><small>Interior</small></div>
+      </div>
+
+      <a href="#" class="call-now-btn" onclick="openInquire(); return false;">INQUIRE NOW</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- INQUIRE MODAL -->
+<div class="modal" id="inquireModal" onclick="if(event.target===this) closeInquire()">
+  <div class="inquire-content">
+    <span class="close" onclick="closeInquire()">&times;</span>
+
+    <!-- STEP 1: MAIN MENU -->
+    <div class="inquire-view" id="inquireMain">
+      <h2>Let's Talk</h2>
+      <p>Choose how you'd like to reach us — our brokers are ready to help.</p>
+
+      <div class="inquire-options">
+        <a href="https://www.facebook.com/profile.php?id=61590744566641" target="_blank" class="inquire-option messenger">
+          <span class="inquire-icon"><img src="Socmed Icons\fb.png" alt="Facebook"></span>
+          <div>
+            <strong>Send Message to FB Page</strong>
+            <small>Chat with our page</small>
+          </div>
+        </a>
+
+        <button type="button" class="inquire-option brokers" onclick="showInquireView('brokerList')">
+          <span class="inquire-icon"><img src="Socmed Icons\redwood.jpg" alt="Brokers"></span>
+          <div>
+            <strong>Choose a Broker</strong>
+            <small>Call, WhatsApp, Viber, or Messenger</small>
+          </div>
+          <span class="inquire-chevron">›</span>
+        </button>
+      </div>
+
+      <p class="inquire-note">You can also email us at <a href="mailto:redwood.perch1966@gmail.com">redwood.perch1966@gmail.com</a></p>
+    </div>
+
+    <!-- STEP 2: BROKER LIST -->
+    <div class="inquire-view" id="inquireBrokerList" style="display:none;">
+      <button type="button" class="inquire-back" onclick="showInquireView('main')">← Back</button>
+      <h2>Choose a Broker</h2>
+      <p>Select a broker to see their contact options.</p>
+
+      <div class="inquire-options" id="brokerListContainer"></div>
+    </div>
+
+    <!-- STEP 3: BROKER DETAIL -->
+    <div class="inquire-view" id="inquireBrokerDetail" style="display:none;">
+      <button type="button" class="inquire-back" onclick="showInquireView('brokerList')">← Back</button>
+      <h2 id="brokerDetailName"></h2>
+      <p id="brokerDetailNumber"></p>
+
+      <div class="inquire-options" id="brokerDetailOptions"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOT MODAL -->
+<div class="modal" id="lotModal">
+  <div class="modal-content">
+
+    <span class="close" onclick="closeLotModal()">&times;</span>
+
+    <div class="modal-gallery">
+      <div class="gallery-tabs">
+        <button class="active" onclick="switchLotModalView('photos', this)">PHOTOS</button>
+        <button onclick="switchLotModalView('tour', this)">VIRTUAL TOUR</button>
+      </div>
+
+      <div id="lotPhotoView">
+        <img id="lotMainImage" onclick="openLotZoom()" alt="Lot photo">
+        <div class="thumbs" id="lotThumbContainer"></div>
+      </div>
+
+      <div id="lotTourView" style="display:none;">
+        <iframe id="lotTourVideo" class="yt-frame" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+        <p class="lot-tour-empty" id="lotTourEmpty" style="display:none;">Virtual tour coming soon.</p>
+      </div>
+    </div>
+
+    <div class="modal-details">
+      <h2 id="lotTitle"></h2>
+      <p id="lotDesc"></p>
+
+      <div class="price-box" id="lotPriceBox">
+        <div class="price-main" onclick="toggleLotPromo()">
+          <div class="price-main-text">
+            <span class="price-label">Price per sqm</span>
+            <span class="price-value" id="lotPriceSpec"></span>
+          </div>
+          <button type="button" class="price-toggle" id="lotPriceToggle" aria-label="Show latest promo">▾</button>
+        </div>
+
+        <div class="promo-panel" id="lotPromoPanel">
+          <div class="promo-empty" id="lotPromoEmpty" style="display:none;">No promo yet.</div>
+
+          <div id="lotPromoContent" style="display:none;">
+            <div class="promo-row">
+              <span>List Price / sqm</span>
+              <strong id="lotPromoOriginal"></strong>
+            </div>
+            <div class="promo-row promo-row-highlight">
+              <span id="lotPromoLabel"></span>
+              <strong id="lotPromoDiscounted"></strong>
+            </div>
+            <p class="promo-note" id="lotPromoNote"></p>
+          </div>
+        </div>
+      </div>
+
+      <h4>LOT DETAILS</h4>
+      <div class="spec-cards">
+        <div><strong id="lotAreaSpec"></strong><small>Lot Area</small></div>
+      </div>
+
+      <a href="#" class="call-now-btn" onclick="openInquire(); return false;">INQUIRE NOW</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ZOOM -->
+<div class="zoom" id="zoom" onclick="closeZoom()">
+  <img id="zoomImg" alt="Zoomed view">
+
+</div>
+
+<script>
+let currentUnit = "";
+
+function toYouTubeEmbed(url) {
+  if (!url) return "";
+  const idMatch = url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{11})/);
+  const id = idMatch ? idMatch[1] : url; // allow passing a bare video ID too
+  return `https://www.youtube.com/embed/${id}`;
+}
+
+const units = {
+  "rochester": {
+    title: "Rochester",
+    desc: "Modern sophistication with clean lines and bold design.",
+    images: [
+      "Houses/rochester.png",
+      "Houses/rochester-pics/rc1.png",
+      "Houses/rochester-pics/rc2.png",
+      "Houses/rochester-pics/rc3.png",
+      "Houses/rochester-pics/rc4.png",
+      "Houses/rochester-pics/rc5.png",
+      "Houses/rochester-pics/rc6.png",
+      "Houses/rochester-pics/rc7.png",
+      "Houses/rochester-pics/rc8.png",
+      "Houses/rochester-pics/rc9.png"
+    ],
+    floorPlans: [
+      { label: "Lower Ground Floor", src: "Floor Plans/rc-fp/rc-lg.jpg" },
+      { label: "Upper Ground Floor", src: "Floor Plans/rc-fp/rc-ug.jpg" }
+    ],
+    video: "Videos/rochester-tour.mp4",
+    floor: "241 sqm",
+    lot: "412 sqm",
+    beds: 4,
+    baths: 5,
+    parking: 4,
+    interior: "Unfurnished",
+    price: 32000000,
+    promo: {
+      type: "structured",
+      label: "Cash Payment Promo",
+      cash: {
+        totalContractPrice: 32000000,
+        discountPercent: 20,
+        discountAmount: 6400000,
+        reservationFee: 1000000,
+        netContractPrice: 24600000,
+        months: 3,
+        monthlyDue: 8533333
+      },
+      installment: {
+        downPaymentPercent: 10,
+        downPayment: 3200000,
+        reservationFee: 1000000,
+        netSpotDownPayment: 2200000,
+        balancePercent: 90,
+        balance: 28800000,
+        tranche1Months: 24,
+        tranche1Monthly: 342857,
+        tranche2Years: 5,
+        tranche2Rate: 8,
+        tranche2Monthly: 417189,
+        monthlyAmortization: 480000
+      }
+    }
+  },
+
+  "fairmont": {
+    title: "Fairmont",
+    desc: "Modern two-story home with clean lines and a flat roof.",
+    images: [
+      "Houses/Fairmont/fairmont.png",
+      "Houses/Fairmont/fm1.png",
+      "Houses/Fairmont/fm2.png",
+      "Houses/Fairmont/fm3.png",
+      "Houses/Fairmont/fm4.png",
+      "Houses/Fairmont/fm5.png",
+      "Houses/Fairmont/fm6.png",
+      "Houses/Fairmont/fm7.png"
+
+    ],
+    floorPlans: [
+      { label: "Lower Ground Floor", src: "FloorPlans/fairmont-ground.png" },
+      { label: "Upper Ground Floor", src: "FloorPlans/fairmont-second.png" }
+    ],
+    video: "Videos/fairmont-tour.mp4",
+    floor: "250 sqm",
+    lot: "587 sqm",
+    beds: 4,
+    baths: 5,
+    parking: 4,
+    interior: "Unfurnished",
+    price: 40000000,
+  },
+
+  "somerset": {
+    title: "Somerset",
+    desc: "Elegant single-story home with natural warmth.",
+    images: [
+      "Houses/somerset.png",
+      "Houses/somerset-pics/sm1.png",
+      "Houses/somerset-pics/sm2.png",
+      "Houses/somerset-pics/sm3.png",
+      "Houses/somerset-pics/sm4.png",
+      "Houses/somerset-pics/sm5.png",
+      "Houses/somerset-pics/sm6.png",
+      "Houses/somerset-pics/sm7.png",
+      "Houses/somerset-pics/sm8.png",
+      "Houses/somerset-pics/sm9.png"
+    ],
+    floorPlans: [
+      { label: "Lower Ground Floor", src: "Floor Plans/sm-fp/sm-lg.jpg" },
+      { label: "Upper Ground Floor", src: "Floor Plans/sm-fp/sm-ug.jpg" }
+    ],
+    video: "Videos/rochester-tour.mp4",
+    floor: "206 sqm",
+    lot: "339 sqm",
+    beds: 4,
+    baths: 5,
+    parking: 4,
+    interior: "Unfurnished",
+    price: 28000000,
+    promo: {
+      type: "structured",
+      label: "Cash Payment Promo",
+      cash: {
+        totalContractPrice: 28000000,
+        discountPercent: 20,
+        discountAmount: 5600000,
+        reservationFee: 1000000,
+        netContractPrice: 21400000,
+        months: 3,
+        monthlyDue: 7466667
+      },
+      installment: {
+        downPaymentPercent: 10,
+        downPayment: 2800000,
+        reservationFee: 1000000,
+        netSpotDownPayment: 1800000,
+        balancePercent: 90,
+        balance: 25200000,
+        tranche1Months: 24,
+        tranche1Monthly: 300000,
+        tranche2Years: 5,
+        tranche2Rate: 8,
+        tranche2Monthly: 365040,
+        monthlyAmortization: null
+      }
+    }
+  },
+
+  "cascade-downhill": {
+    title: "Cascade: Downhill",
+    desc: "Stylish hillside home with modern layout.",
+    images: [
+      "Houses/downhill.png",
+      "Houses/cascade-pics/cc1.png",
+      "Houses/cascade-pics/cc2.png",
+      "Houses/cascade-pics/cc3.png",
+      "Houses/cascade-pics/cc4.png",
+      "Houses/cascade-pics/cc5.png",
+      "Houses/cascade-pics/cc6.png",
+      "Houses/cascade-pics/cc7.png",
+      "Houses/cascade-pics/cc8.png"
+    ],
+    floorPlans: [
+      { label: "Lower Ground Floor", src: "Floor Plans/cc-dh-fp/dh-lg.jpeg" },
+      { label: "Upper Ground Floor", src: "Floor Plans/cc-dh-fp/dh-ug.jpeg" }
+    ],
+    video: "https://www.youtube.com/watch?v=DY8sd_sXiRE",
+    floor: "202 sqm",
+    lot: "300 sqm",
+    beds: 4,
+    baths: 5,
+    parking: 4,
+    interior: "Unfurnished",
+    price: 27000000,
+    promo: {
+      type: "structured",
+      label: "Cash Payment Promo",
+      cash: {
+        totalContractPrice: 27000000,
+        discountPercent: 20,
+        discountAmount: 5400000,
+        reservationFee: 1000000,
+        netContractPrice: 20600000,
+        months: 3,
+        monthlyDue: 7200000
+      },
+      installment: {
+        downPaymentPercent: 10,
+        downPayment: 2700000,
+        reservationFee: 1000000,
+        netSpotDownPayment: 1700000,
+        balancePercent: 90,
+        balance: 24300000,
+        tranche1Months: 24,
+        tranche1Monthly: 289286,
+        tranche2Years: 5,
+        tranche2Rate: 8,
+        tranche2Monthly: 352003,
+        monthlyAmortization: 405000
+      }
+    }
+  },
+
+  "cascade-uphill": {
+    title: "Cascade: Uphill",
+    desc: "Optimized layout with airflow and lighting.",
+    images: [
+      "Houses/cascade.png",
+      "Houses/Uphill/uh1.png",
+      "Houses/Uphill/uh2.png",
+      "Houses/Uphill/uh3.png",
+      "Houses/Uphill/uh4.png",
+      "Houses/Uphill/uh5.png",
+      "Houses/Uphill/uh6.png"
+    ],
+    floorPlans: [
+      { label: "Lower Ground Floor", src: "Floor Plans/cc-uh-fp/uh-lg.jpeg" },
+      { label: "Upper Ground Floor", src: "Floor Plans/cc-uh-fp/uh-ug.jpeg" }
+    ],
+    floor: "202 sqm",
+    lot: "300 sqm",
+    beds: 3,
+    baths: 2,
+    parking: 2,
+    interior: "Unfurnished",
+    price: 25000000,
+    promo: {
+      type: "structured",
+      label: "Cash Payment Promo",
+      cash: {
+        totalContractPrice: 25000000,
+        discountPercent: 20,
+        discountAmount: 5000000,
+        reservationFee: 1000000,
+        netContractPrice: 19000000,
+        months: 3,
+        monthlyDue: 6666667
+      },
+      installment: {
+        downPaymentPercent: 10,
+        downPayment: 2500000,
+        reservationFee: 1000000,
+        netSpotDownPayment: 1500000,
+        balancePercent: 90,
+        balance: 22500000,
+        tranche1Months: 24,
+        tranche1Monthly: 267857,
+        tranche2Years: 5,
+        tranche2Rate: 8,
+        tranche2Monthly: 325929,
+        monthlyAmortization: null
+      }
+    }
+  }
+};
+
+function openModal(key) {
+  currentUnit = key;
+  const u = units[key];
+
+  // Always start modal on photos view
+  switchModalView("photos", document.querySelector(".gallery-tabs button:first-child"));
+
+  document.getElementById("unitModal").style.display = "flex";
+
+  const main = document.getElementById("mainImage");
+  main.src = u.images[0];
+
+  renderFloorPlanTabs(u);
+
+  document.getElementById("unitTitle").innerText = u.title;
+  document.getElementById("unitDesc").innerText = u.desc;
+  renderPriceBox(u);
+  document.getElementById("floorArea").innerText = u.floor;
+  document.getElementById("lotArea").innerText = u.lot;
+  document.getElementById("beds").innerText = u.beds;
+  document.getElementById("baths").innerText = u.baths;
+  document.getElementById("parking").innerText = u.parking;
+  document.getElementById("Interior").innerText = u.interior;
+
+  const container = document.getElementById("thumbContainer");
+  container.innerHTML = "";
+
+  u.images.forEach((img, index) => {
+    const t = document.createElement("img");
+    t.src = img;
+    t.alt = u.title + " photo " + (index + 1);
+
+    if (index === 0) t.classList.add("active");
+
+    t.onclick = () => {
+      main.src = img;
+      document.querySelectorAll(".thumbs img").forEach(el => el.classList.remove("active"));
+      t.classList.add("active");
+    };
+
+    container.appendChild(t);
+  });
+
+  const tourContainer = document.getElementById("tourThumbContainer");
+  tourContainer.innerHTML = "";
+
+  (u.videoTours || []).forEach((tour, index) => {
+    const t = document.createElement("img");
+    t.src = tour.thumb;
+    t.alt = u.title + " video tour thumbnail " + (index + 1);
+
+    if (index === 0) t.classList.add("active");
+
+    t.onclick = () => {
+      document.getElementById("tourVideo").src = toYouTubeEmbed(tour.video);
+      document.querySelectorAll(".tour-thumbs img")
+        .forEach(el => el.classList.remove("active"));
+      t.classList.add("active");
+    };
+
+    tourContainer.appendChild(t);
+  });
+}
+
+/**
+ * Builds the floor-plan tab buttons (e.g. "Lower Ground Floor" / "Upper Ground Floor")
+ * for whichever unit is currently open, and shows the first plan by default.
+ * Falls back to the unit's main photo if no floor plans are defined for it.
+ */
+function renderFloorPlanTabs(u) {
+  const plan = document.getElementById("floorPlanImage");
+  const floorTabsContainer = document.getElementById("floorTabs");
+  floorTabsContainer.innerHTML = "";
+
+  if (u.floorPlans && u.floorPlans.length) {
+    plan.src = u.floorPlans[0].src;
+    plan.alt = u.title + " - " + u.floorPlans[0].label;
+
+    u.floorPlans.forEach((fp, index) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = fp.label;
+      if (index === 0) btn.classList.add("active");
+
+      btn.onclick = () => {
+        plan.src = fp.src;
+        plan.alt = u.title + " - " + fp.label;
+        floorTabsContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      };
+
+      floorTabsContainer.appendChild(btn);
+    });
+
+    floorTabsContainer.style.display = u.floorPlans.length > 1 ? "flex" : "none";
+  } else {
+    plan.src = u.images[0];
+    plan.alt = u.title + " photo";
+    floorTabsContainer.style.display = "none";
+  }
+}
+
+/**
+ * Formats a number as a peso amount, e.g. 18500000 -> "₱18,500,000"
+ */
+function formatPeso(amount) {
+  if (amount === undefined || amount === null) return "Contact for price";
+  return "₱" + Number(amount).toLocaleString("en-PH");
+}
+
+/**
+ * Fills in the unit price and the promo dropdown panel. The panel supports
+ * three states:
+ *  1. No promo at all               -> "No promo yet."
+ *  2. Structured cash/installment   -> full Cash Payment + Installment breakdown
+ *     promo (from the official price sheets)
+ *  3. Legacy "simple" promo         -> list price / discounted price / free note
+ * The panel itself always starts closed; togglePromo() opens it.
+ */
+function renderPriceBox(u) {
+  document.getElementById("unitPrice").innerText = formatPeso(u.price);
+
+  document.getElementById("promoPanel").classList.remove("open");
+  document.getElementById("priceToggle").classList.remove("open");
+
+  const emptyEl = document.getElementById("promoEmpty");
+  const structuredEl = document.getElementById("promoStructured");
+  const simpleEl = document.getElementById("promoSimple");
+  const priceBox = document.getElementById("priceBox");
+
+  emptyEl.style.display = "none";
+  structuredEl.style.display = "none";
+  simpleEl.style.display = "none";
+
+  if (!u.promo) {
+    priceBox.classList.remove("has-promo");
+    emptyEl.style.display = "block";
+    return;
+  }
+
+  priceBox.classList.add("has-promo");
+
+  if (u.promo.type === "structured" && u.promo.cash && u.promo.installment) {
+    structuredEl.style.display = "block";
+    const c = u.promo.cash;
+    const i = u.promo.installment;
+
+    document.getElementById("promoTCP").innerText = formatPeso(c.totalContractPrice);
+    document.getElementById("promoDiscountLabel").innerText = c.discountPercent + "% Discount (within 60 days)";
+    document.getElementById("promoDiscountAmt").innerText = "-" + formatPeso(c.discountAmount);
+    document.getElementById("promoResFee").innerText = "-" + formatPeso(c.reservationFee);
+    document.getElementById("promoNetCP").innerText = formatPeso(c.netContractPrice);
+    document.getElementById("promoCashMonthsLabel").innerText = "Payable over " + c.months + " months";
+    document.getElementById("promoCashMonthly").innerText = formatPeso(c.monthlyDue) + "/mo";
+
+    document.getElementById("promoInstallmentHeader").innerText =
+      "Installment (" + i.downPaymentPercent + "% DP / 7 Yrs)";
+    document.getElementById("promoDP").innerText = formatPeso(i.downPayment);
+    document.getElementById("promoInstResFee").innerText = "-" + formatPeso(i.reservationFee);
+    document.getElementById("promoNetSpotDP").innerText = formatPeso(i.netSpotDownPayment);
+    document.getElementById("promoBalance").innerText =
+      i.balancePercent + "% \u2014 " + formatPeso(i.balance);
+    document.getElementById("promoTranche1Label").innerText =
+      "1st " + (i.tranche1Months / 12) + " yrs (0% interest), " + i.tranche1Months + " mos";
+    document.getElementById("promoTranche1Monthly").innerText = formatPeso(i.tranche1Monthly) + "/mo";
+    document.getElementById("promoTranche2Label").innerText =
+      "2nd tranche, " + i.tranche2Years + " yrs @ " + i.tranche2Rate + "% p.a.";
+    document.getElementById("promoTranche2Monthly").innerText = formatPeso(i.tranche2Monthly) + "/mo";
+
+    const amortRow = document.getElementById("promoAmortRow");
+    if (i.monthlyAmortization) {
+      amortRow.style.display = "flex";
+      document.getElementById("promoAmort").innerText = formatPeso(i.monthlyAmortization) + "/mo";
+    } else {
+      amortRow.style.display = "none";
+    }
+
+  } else {
+    simpleEl.style.display = "block";
+    document.getElementById("promoOriginal").innerText = formatPeso(u.price);
+    document.getElementById("promoLabel").innerText = u.promo.label || "Promo Price";
+    document.getElementById("promoDiscounted").innerText = formatPeso(u.promo.price);
+    document.getElementById("promoNote").innerText = u.promo.note || "";
+  }
+}
+
+/**
+ * Toggles the promo dropdown open/closed. Always works now — if there's no
+ * promo it simply reveals the "No promo yet." message.
+ */
+function togglePromo() {
+  document.getElementById("promoPanel").classList.toggle("open");
+  document.getElementById("priceToggle").classList.toggle("open");
+}
+
+function switchModalView(view, btn) {
+  document.getElementById("photoView").style.display = view === "photos" ? "block" : "none";
+  document.getElementById("planView").style.display = view === "plans" ? "block" : "none";
+  document.getElementById("tourView").style.display = view === "tour" ? "block" : "none";
+
+  const video = document.getElementById("tourVideo");
+  if (view === "tour") {
+    const tours = units[currentUnit]?.videoTours;
+
+    if (tours && tours.length) {
+      video.src = toYouTubeEmbed(tours[0].video);
+    } else {
+      video.src = toYouTubeEmbed(units[currentUnit]?.video);
+    }
+  } else {
+    video.src = "";
+  }
+
+  document.querySelectorAll(".gallery-tabs button").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+}
+
+function openPlanZoom() {
+  document.getElementById("zoom").style.display = "flex";
+  document.getElementById("zoomImg").src = document.getElementById("floorPlanImage").src;
+}
+
+function closeModal() {
+  document.getElementById("unitModal").style.display = "none";
+  document.getElementById("tourVideo").src = "";
+}
+
+function openZoom() {
+  document.getElementById("zoom").style.display = "flex";
+  document.getElementById("zoomImg").src = document.getElementById("mainImage").src;
+}
+
+function closeZoom() {
+  document.getElementById("zoom").style.display = "none";
+}
+
+/* ================= LOTS ================= */
+
+const lots = {
+  // Verified against "THE PERCH 3 INVENTORY, promo period Mar 1 - May 31, 2026": Blk 14, Lot 10 = 514 sqm @ ₱25,000/sqm.
+  "Perch III: Blk 14, Lot 10": {
+    title: "Perch III: Blk 14, Lot 10",
+    desc: "514 sqm lot surrounded by trees and greenery.",
+    images: ["Lots/b14l10.png"],
+    video: null,
+    lotArea: "514 sqm",
+    pricePerSqm: 25000
+  },
+  // Verified: Blk 14, Lot 9 = 520 sqm @ ₱25,000/sqm — but this lot is marked CLOSED (sold) on the
+  // inventory sheet. Recommend removing this card or confirming with the broker before publishing.
+  "Perch III: Blk 14, Lot 9": {
+    title: "Perch III: Blk 14, Lot 9",
+    desc: "520 sqm corner lot along a curved road. (SOLD — please confirm availability before listing.)",
+    images: ["Lots/bl14l9.png"],
+    video: null,
+    lotArea: "520 sqm",
+    pricePerSqm: 25000
+  },
+  // Area not clearly legible on the Blk 4 rows of the Perch III sheet (photo too blurred). Using the
+  // 567 sqm area you provided; price is an ESTIMATE based on the ₱25,000/sqm rate charged for other
+  // regular (non-corner) Perch III lots — please confirm the actual price with your price list.
+  "Perch III: Blk 4, Lot 3": {
+    title: "Perch III: Blk 4, Lot 3",
+    desc: "567 sqm residential lot along the road, ideal for development.",
+    images: ["Lots/b4l3.png"],
+    video: null,
+    lotArea: "567 sqm",
+    pricePerSqm: 25000
+  },
+  // Area not found in the photographed Perch I sheet (which stops at Blk 10). Using the 657 sqm area
+  // you provided; price is an ESTIMATE based on the ₱40,000/sqm rate for regular Perch I lots —
+  // please confirm the actual price.
+  "Perch I: Blk 12, Lot 8": {
+    title: "Perch I: Blk 12, Lot 8",
+    desc: "657 sqm rectangular lot beside a concrete road.",
+    images: ["Lots/bl12l8.png"],
+    video: null,
+    lotArea: "657 sqm",
+    pricePerSqm: 40000
+  },
+  // Area not confirmed on the photographed Perch I sheet (Blk 8, Lot 4 there is listed at 583 sqm).
+  // Using the 526 sqm area you provided; price is an ESTIMATE at the ₱40,000/sqm regular-lot rate —
+  // please confirm the actual price.
+  "Perch I: Blk 8, Lot 4": {
+    title: "Perch I: Blk 8, Lot 4",
+    desc: "526 sqm elevated lot with scenic surroundings.",
+    images: ["Lots/bl8l4_01435.png"],
+    video: null,
+    lotArea: "526 sqm",
+    pricePerSqm: 40000
+  },
+  // Verified against "THE PERCH1 INVENTORY AS OF NOVEMBER 1, 2025": Blk 10, Lot 6 = 604 sqm @ ₱40,000/sqm.
+  "Perch I: Blk 10, Lot 6": {
+    title: "Perch I: Blk 10, Lot 6",
+    desc: "604 sqm lot with lush greenery and paved access.",
+    images: ["Lots/bl10l6.png"],
+    video: null,
+    lotArea: "604 sqm",
+    pricePerSqm: 40000
+  },
+  // Lot 12 itself isn't a labeled row on the photographed sheet, but every other Blk 10 lot shown
+  // (10, 11, 13, 14) is 604 sqm @ ₱40,000/sqm, so this is a high-confidence match, not a guess.
+  "Perch I: Blk 10, Lot 12": {
+    title: "Perch I: Blk 10, Lot 12",
+    desc: "604 sqm roadside lot with open terrain.",
+    images: ["Lots/bl10l12.png"],
+    video: null,
+    lotArea: "604 sqm",
+    pricePerSqm: 40000
+  },
+  // Verified against "THE PERCH1 INVENTORY AS OF NOVEMBER 1, 2025": Blk 9, Lot 8 = 502 sqm @ ₱40,000/sqm.
+  "Perch I: Blk 9, Lot 8": {
+    title: "Perch I: Blk 9, Lot 8",
+    desc: "502 sqm lot in a hillside residential area.",
+    images: ["Lots/bl9l8.png"],
+    video: null,
+    lotArea: "502 sqm",
+    pricePerSqm: 40000
+  }
+};
+
+/**
+ * Formats a number as a peso-per-sqm amount, e.g. 45000 -> "₱45,000 / sqm"
+ */
+function formatPesoPerSqm(amount) {
+  if (amount === undefined || amount === null) return "Contact for price";
+  return "₱" + Number(amount).toLocaleString("en-PH") + " / sqm";
+}
+
+/**
+ * Fills in the lot's price-per-sqm and the promo dropdown panel
+ * (list price, discounted price, and promo note). Panel starts closed.
+ * If the lot has no promo, shows "No promo yet."
+ */
+function renderLotPriceBox(lot) {
+  document.getElementById("lotPriceSpec").innerText = formatPesoPerSqm(lot.pricePerSqm);
+
+  document.getElementById("lotPromoPanel").classList.remove("open");
+  document.getElementById("lotPriceToggle").classList.remove("open");
+
+  const priceBox = document.getElementById("lotPriceBox");
+  const emptyEl = document.getElementById("lotPromoEmpty");
+  const contentEl = document.getElementById("lotPromoContent");
+
+  if (lot.promo) {
+    priceBox.classList.add("has-promo");
+    emptyEl.style.display = "none";
+    contentEl.style.display = "block";
+    document.getElementById("lotPromoOriginal").innerText = formatPesoPerSqm(lot.pricePerSqm);
+    document.getElementById("lotPromoLabel").innerText = lot.promo.label || "Promo Price";
+    document.getElementById("lotPromoDiscounted").innerText = formatPesoPerSqm(lot.promo.pricePerSqm);
+    document.getElementById("lotPromoNote").innerText = lot.promo.note || "";
+  } else {
+    priceBox.classList.remove("has-promo");
+    contentEl.style.display = "none";
+    emptyEl.style.display = "block";
+  }
+}
+
+/**
+ * Toggles the lot promo dropdown open/closed. Always works — shows
+ * "No promo yet." when the lot has none.
+ */
+function toggleLotPromo() {
+  document.getElementById("lotPromoPanel").classList.toggle("open");
+  document.getElementById("lotPriceToggle").classList.toggle("open");
+}
+
+let currentLot = "";
+
+function openLotModal(key) {
+  currentLot = key;
+  const lot = lots[key];
+
+  switchLotModalView("photos", document.querySelector("#lotModal .gallery-tabs button:first-child"));
+
+  document.getElementById("lotModal").style.display = "flex";
+
+  const main = document.getElementById("lotMainImage");
+  main.src = lot.images[0];
+
+  document.getElementById("lotTitle").innerText = lot.title;
+  document.getElementById("lotDesc").innerText = lot.desc;
+  document.getElementById("lotAreaSpec").innerText = lot.lotArea;
+  renderLotPriceBox(lot);
+
+  const container = document.getElementById("lotThumbContainer");
+  container.innerHTML = "";
+
+  lot.images.forEach((img, index) => {
+    const t = document.createElement("img");
+    t.src = img;
+    t.alt = lot.title + " photo " + (index + 1);
+
+    if (index === 0) t.classList.add("active");
+
+    t.onclick = () => {
+      main.src = img;
+      document.querySelectorAll("#lotThumbContainer img").forEach(el => el.classList.remove("active"));
+      t.classList.add("active");
+    };
+
+    container.appendChild(t);
+  });
+}
+
+function closeLotModal() {
+  document.getElementById("lotModal").style.display = "none";
+  document.getElementById("lotTourVideo").src = "";
+}
+
+function switchLotModalView(view, btn) {
+  document.getElementById("lotPhotoView").style.display = view === "photos" ? "block" : "none";
+  document.getElementById("lotTourView").style.display = view === "tour" ? "block" : "none";
+
+  const video = document.getElementById("lotTourVideo");
+  const emptyMsg = document.getElementById("lotTourEmpty");
+
+  if (view === "tour") {
+    const tourSrc = lots[currentLot]?.video;
+    if (tourSrc) {
+      video.src = toYouTubeEmbed(tourSrc);
+      video.style.display = "block";
+      emptyMsg.style.display = "none";
+    } else {
+      video.src = "";
+      video.style.display = "none";
+      emptyMsg.style.display = "block";
+    }
+  } else {
+    video.src = "";
+  }
+
+  document.querySelectorAll("#lotModal .gallery-tabs button").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+}
+
+function openLotZoom() {
+  document.getElementById("zoom").style.display = "flex";
+  document.getElementById("zoomImg").src = document.getElementById("lotMainImage").src;
+}
+
+function scrollLotCards(dir) {
+  document.getElementById("lotCardsContainer").scrollBy({
+    left: dir * 320,
+    behavior: "smooth"
+  });
+}
+
+function seeMoreLotCards() {
+  document.getElementById("lotCardsContainer").scrollBy({
+    left: 300,
+    behavior: "smooth"
+  });
+}
+
+const lotCardsContainer = document.getElementById("lotCardsContainer");
+const lotSeeMoreBtn = document.getElementById("lotSeeMoreBtn");
+
+function updateLotSeeMoreVisibility() {
+  const atEnd =
+    lotCardsContainer.scrollLeft + lotCardsContainer.clientWidth >=
+    lotCardsContainer.scrollWidth - 10;
+
+  lotSeeMoreBtn.classList.toggle("hidden", atEnd);
+}
+
+lotCardsContainer.addEventListener("scroll", updateLotSeeMoreVisibility);
+window.addEventListener("load", updateLotSeeMoreVisibility);
+window.addEventListener("resize", updateLotSeeMoreVisibility);
+
+const brokers = [
+  { name: "Con Frias",            phone: "0915-044-5909", tel: "+639150445909", fb: "https://www.facebook.com/con.frias", photo: "Broker_PFP/Con-Frias.jpg" },
+  { name: "Charissa Pinto Frias", phone: "0917-576-5546", tel: "+639175765546", fb: "https://www.facebook.com/charissa.pinto.9", photo: "Broker_PFP/Cha-Frias.jpg" },
+  { name: "Eva Frias",            phone: "0977-816-6168", tel: "+639778166168", fb: "https://www.facebook.com/evafrias777", photo: "Broker_PFP/Eva-Frias.jpg" },
+  { name: "Gilda Dionela",        phone: "0920-580-7126", tel: "+639205807126", fb: "https://www.facebook.com/BabyDionela", photo: "Broker_PFP/Gilda_Dionela.jpg" },
+  { name: "Crizzele Cise",        phone: "0960-208-3721", tel: "+639602083721", fb: "https://www.facebook.com/crizzel.cise", photo: "Broker_PFP/Crizzel-Cise.jpg" },
+  { name: "Crizzele Cise",        phone: "0956-400-7101", tel: "+639564007101", fb: "https://www.facebook.com/crizzel.cise", photo: "Broker_PFP/Crizzel-Cise.jpg" }
+];
+
+const REDWOOD_FB_PAGE = "https://www.facebook.com/profile.php?id=61590744566641";
+
+/* ================= ICONS & AVATARS ================= */
+/* Icon images live in the /Icons folder — drop your downloaded PNGs there
+   using these exact filenames (all icons are shown inside a red circle
+   background to match the site's color scheme):
+     Icons/message.png    - used for "Send Message to FB Page"
+     Icons/brokers.png    - used for "Choose a Broker"
+     Icons/call.png       - used for the Call option
+     Icons/whatsapp.png   - used for the WhatsApp option
+     Icons/viber.png      - used for the Viber option
+     Icons/messenger.png  - used for each broker's Messenger option
+   Tip: use plain white / white-silhouette PNGs (transparent background)
+   so they show up cleanly on the red circle. */
+
+const ICONS = {
+  call: `<img src="Socmed Icons/call.png" alt="Call">`,
+  whatsapp: `<img src="Socmed Icons/whatsapp.webp" alt="WhatsApp">`,
+  viber: `<img src="Socmed Icons/viber.webp" alt="Viber">`,
+  messenger: `<img src="Socmed Icons/messenger.png" alt="Messenger">`
+};
+
+const AVATAR_COLORS = ["#C02020", "#A00000", "#C00000", "#8B0000", "#B22222", "#CD5C5C", "#A52A2A", "#7A0C0C"];
+
+/**
+ * Deterministically picks a background color for a broker's initials
+ * avatar based on their name, so the same broker always gets the same color.
+ */
+function colorForName(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
+}
+
+/**
+ * Builds a two-letter initials string from a broker's full name
+ * (first letter of first name + first letter of last name).
+ */
+function initialsForName(name) {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+/**
+ * Returns the HTML for a broker's avatar. Uses their photo if one is set
+ * (broker.photo), otherwise falls back to a colored circle with initials.
+ */
+function brokerAvatarHtml(broker) {
+  if (broker.photo) {
+    return `<span class="inquire-icon broker-avatar broker-avatar-photo"><img src="${broker.photo}" alt="${broker.name}"></span>`;
+  }
+  return `<span class="inquire-icon broker-avatar" style="background:${colorForName(broker.name)}">${initialsForName(broker.name)}</span>`;
+}
+
+function openInquire() {
+  document.getElementById("inquireModal").style.display = "flex";
+  renderBrokerList();
+  showInquireView("main");
+}
+
+function closeInquire() {
+  document.getElementById("inquireModal").style.display = "none";
+}
+
+function showInquireView(view) {
+  document.getElementById("inquireMain").style.display = view === "main" ? "block" : "none";
+  document.getElementById("inquireBrokerList").style.display = view === "brokerList" ? "block" : "none";
+  document.getElementById("inquireBrokerDetail").style.display = view === "brokerDetail" ? "block" : "none";
+}
+
+function renderBrokerList() {
+  const container = document.getElementById("brokerListContainer");
+  container.innerHTML = "";
+
+  brokers.forEach((broker, index) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "inquire-option broker-item";
+    btn.innerHTML = `
+      ${brokerAvatarHtml(broker)}
+      <div>
+        <strong>${broker.name}</strong>
+        <small>${broker.phone}</small>
+      </div>
+      <span class="inquire-chevron">›</span>
+    `;
+    btn.onclick = () => showBrokerDetail(index);
+    container.appendChild(btn);
+  });
+}
+
+function showBrokerDetail(index) {
+  const broker = brokers[index];
+  const digits = broker.tel.replace("+", "");
+
+  document.getElementById("brokerDetailName").textContent = broker.name;
+  document.getElementById("brokerDetailNumber").textContent = broker.phone;
+
+  document.getElementById("brokerDetailOptions").innerHTML = `
+    <a href="tel:${broker.tel}" class="inquire-option call">
+      <span class="inquire-icon">${ICONS.call}</span>
+      <div>
+        <strong>Call</strong>
+        <small>${broker.phone}</small>
+      </div>
+    </a>
+
+    <a href="https://wa.me/${digits}" target="_blank" class="inquire-option whatsapp">
+      <span class="inquire-icon">${ICONS.whatsapp}</span>
+      <div>
+        <strong>WhatsApp</strong>
+        <small>Message ${broker.name}</small>
+      </div>
+    </a>
+
+    <a href="viber://chat?number=%2B${digits}" class="inquire-option viber">
+      <span class="inquire-icon">${ICONS.viber}</span>
+      <div>
+        <strong>Viber</strong>
+        <small>Message ${broker.name}</small>
+      </div>
+    </a>
+
+    <a href="${broker.fb || REDWOOD_FB_PAGE}" target="_blank" class="inquire-option messenger">
+      <span class="inquire-icon">${ICONS.messenger}</span>
+      <div>
+        <strong>Messenger</strong>
+        <small>Chat with ${broker.name}</small>
+      </div>
+    </a>
+  `;
+
+  showInquireView("brokerDetail");
+}
+
+function scrollCards(dir) {
+  document.getElementById("cardsContainer").scrollBy({
+    left: dir * 320,
+    behavior: "smooth"
+  });
+}
+
+/* ================= SEE MORE BUTTON (MOBILE) ================= */
+
+function seeMoreCards() {
+  document.getElementById("cardsContainer").scrollBy({
+    left: 300,
+    behavior: "smooth"
+  });
+}
+
+const cardsContainer = document.getElementById("cardsContainer");
+const seeMoreBtn = document.getElementById("seeMoreBtn");
+
+function updateSeeMoreVisibility() {
+  const atEnd =
+    cardsContainer.scrollLeft + cardsContainer.clientWidth >=
+    cardsContainer.scrollWidth - 10;
+
+  seeMoreBtn.classList.toggle("hidden", atEnd);
+}
+
+cardsContainer.addEventListener("scroll", updateSeeMoreVisibility);
+window.addEventListener("load", updateSeeMoreVisibility);
+window.addEventListener("resize", updateSeeMoreVisibility);
+
+/* ================= AMENITIES FEATURE ================= */
+
+const amenitiesData = {
+  "alfresco": {
+    name: "Alfresco Lounge",
+    src: "Amenities/alfresco.jpg",
+    video: "Videos/alfresco-tour.mp4",
+    desc: "An open-air lounge perfect for relaxed gatherings and casual dining with family and friends.",
+    location: "Ground level, beside the main clubhouse",
+    hours: "6:00 AM – 10:00 PM daily",
+    features: "Lounge seating, outdoor dining tables, garden views, ambient lighting",
+    capacity: "Seats up to 40 guests",
+    notes: "Reservation recommended for group events"
+  },
+  "amphitheater": {
+    name: "Amphitheater",
+    src: "Amenities/amotheater.jpg",
+    video: "Videos/amphitheater-tour.mp4",
+    desc: "A tiered outdoor venue for community events, movie nights, and performances under the stars.",
+    location: "Central community park",
+    hours: "9:00 AM – 9:00 PM daily",
+    features: "Tiered seating, open-air stage, landscaped surroundings",
+    capacity: "Accommodates up to 150 guests",
+    notes: "Advance booking required for private events"
+  },
+  "bball-outdoor": {
+    name: "Outdoor Basketball & Tennis Court",
+    src: "Amenities/bball1.jpg",
+    video: "Videos/bball-outdoor-tour.mp4",
+    desc: "Multi-purpose outdoor courts for basketball and tennis, great for staying active or hosting a match.",
+    location: "Near the east community entrance",
+    hours: "5:00 AM – 9:00 PM daily",
+    features: "Full basketball court, tennis lines, night lighting",
+    capacity: "",
+    notes: "Proper court shoes required; no food or drinks on the court"
+  },
+  "bball-indoor": {
+    name: "Indoor Basketball Court",
+    src: "Amenities/bball2.jpg",
+    video: "Videos/bball-indoor-tour.mp4",
+    desc: "A full covered court that lets residents play basketball rain or shine, any time of day.",
+    location: "Sports complex, ground floor",
+    hours: "6:00 AM – 10:00 PM daily",
+    features: "Covered court, scoreboard, spectator benches",
+    capacity: "",
+    notes: "Shared scheduling — sign up at the sports complex desk"
+  },
+  "tt-billiards": {
+    name: "Table Tennis & Billiards",
+    src: "Amenities/btcourt.jpg",
+    video: "Videos/tt-billiards-tour.mp4",
+    desc: "A dedicated games room with table tennis and billiards for casual competition and downtime.",
+    location: "Sports complex, second floor",
+    hours: "8:00 AM – 10:00 PM daily",
+    features: "Table tennis tables, billiards tables, lounge seating",
+    capacity: "",
+    notes: "Equipment available at the front desk on request"
+  },
+  "driving-range": {
+    name: "Driving Range",
+    src: "Amenities/drivingrange.png",
+    video: "Videos/driving-range-tour.mp4",
+    desc: "A practice driving range where golf enthusiasts can perfect their swing without leaving the community.",
+    location: "West side, adjacent to Diamond Park",
+    hours: "6:00 AM – 6:00 PM daily",
+    features: "Multiple hitting bays, ball dispenser, distance markers",
+    capacity: "",
+    notes: "Own clubs required; balls available for purchase on-site"
+  },
+  "playground": {
+    name: "Playground",
+    src: "Amenities/pg2.jpg",
+    video: "Videos/playground-tour.mp4",
+    desc: "A safe, well-equipped play area designed for kids to run, climb, and make new friends.",
+    location: "Beside the amphitheater, central park",
+    hours: "6:00 AM – 8:00 PM daily",
+    features: "Slides, swings, climbing structures, rubberized flooring",
+    capacity: "",
+    notes: "Children must be supervised by an adult at all times"
+  },
+  "diamond-park": {
+    name: "Diamond Park",
+    src: "Amenities/diamondlake.jpg",
+    video: "Videos/diamond-park-tour.mp4",
+    desc: "A scenic park with peaceful walking paths and picturesque views for residents to unwind.",
+    location: "West end of the community",
+    hours: "Open 24 hours",
+    features: "Walking paths, benches, landscaped gardens, scenic viewpoints",
+    capacity: "",
+    notes: "Please observe posted park rules"
+  },
+  "wyndells": {
+    name: "Wyndell's",
+    src: "Amenities/wyndells.jpg",
+    video: "Videos/wyndells-tour.mp4",
+    desc: "The community's signature clubhouse and dining spot — a relaxed space to gather and enjoy great food.",
+    location: "Main clubhouse entrance",
+    hours: "7:00 AM – 11:00 PM daily",
+    features: "Full-service dining, indoor and outdoor seating, event hosting",
+    capacity: "Seats up to 80 guests",
+    notes: "Walk-ins welcome; reservations advised on weekends"
+  },
+  "fishing-lagoon": {
+    name: "Fishing Lagoon",
+    src: "Amenities/fishlagoon.png",
+    video: "Videos/fishing-lagoon-tour.mp4",
+    desc: "A tranquil lagoon set aside for casual fishing and quiet moments by the water.",
+    location: "East end of the community, near the nature trail",
+    hours: "6:00 AM – 6:00 PM daily",
+    features: "Fishing docks, shaded seating, stocked waters",
+    capacity: "",
+    notes: "Catch-and-release only; own fishing gear required"
+  },
+  "camping-site": {
+    name: "Camping Site",
+    src: "Amenities/camping.jpg",
+    video: "Videos/camping-site-tour.mp4",
+    desc: "A designated outdoor area for residents to set up tents and enjoy an overnight nature experience.",
+    location: "Wooded lot beside the nature trail",
+    hours: "Check-in 2:00 PM, check-out 11:00 AM",
+    features: "Tent pads, fire pits, shared washroom facilities",
+    capacity: "Accommodates up to 10 tents",
+    notes: "Advance booking required; open fires permitted only in designated pits"
+  },
+  "swimming-pool": {
+    name: "Swimming Pool",
+    src: "Amenities/swim.jpg",
+    video: "Videos/swimming-pool-tour.mp4",
+    desc: "A resort-style pool for laps, relaxation, and weekend family time.",
+    location: "Beside Wyndell's clubhouse",
+    hours: "6:00 AM – 8:00 PM daily",
+    features: "Main pool, kiddie pool, poolside loungers, shower facilities",
+    capacity: "",
+    notes: "Children must be accompanied by an adult; lifeguard on duty during peak hours"
+  },
+  "sports-center": {
+    name: "Sports Center",
+    src: "Amenities/sportscenter.jpg",
+    video: "Videos/sports-center-tour.mp4",
+    desc: "A multi-purpose facility for fitness and recreational activities beyond the courts.",
+    location: "Adjacent to the indoor basketball court",
+    hours: "5:00 AM – 10:00 PM daily",
+    features: "Gym equipment, multi-purpose hall, locker rooms",
+    capacity: "",
+    notes: "Valid resident ID required for entry"
+  },
+  "community-center": {
+    name: "Community Center",
+    src: "Amenities/cummunity.png",
+    video: "Videos/community-center-tour.mp4",
+    desc: "A shared venue for meetings, celebrations, and neighborhood gatherings.",
+    location: "Central community area, near the amphitheater",
+    hours: "8:00 AM – 10:00 PM daily",
+    features: "Function hall, kitchen area, audio-visual equipment",
+    capacity: "Seats up to 100 guests",
+    notes: "Reservation required for private events"
+  },
+  "gated-access": {
+    name: "Gated Access",
+    src: "Amenities/gate.png",
+    video: "Videos/gated-access-tour.mp4",
+    desc: "24/7 secured entry points with guards on duty, giving residents peace of mind.",
+    location: "Main and secondary community entrances",
+    hours: "Open 24 hours",
+    features: "Guarded checkpoints, CCTV coverage, visitor logging",
+    capacity: "",
+    notes: "Visitors must present valid ID at the gate"
+  },
+  "city-sky-view": {
+    name: "City Sky View",
+    src: "Amenities/city.png",
+    video: "Videos/city-sky-view-tour.mp4",
+    desc: "An elevated viewing deck overlooking the city skyline, perfect for sunsets and quiet evenings.",
+    location: "Top level of the clubhouse",
+    hours: "5:00 AM – 11:00 PM daily",
+    features: "Open-air deck, seating areas, panoramic city views",
+    capacity: "",
+    notes: "Best visited at sunset; capacity limited during peak hours"
+  }
+  
+};
+
+const amenityMain = document.getElementById("amenityMainImg");
+const amenityVideo = document.getElementById("amenityMainVideo");
+const amenityPhotoTab = document.getElementById("amenityPhotoTab");
+const amenityVideoTab = document.getElementById("amenityVideoTab");
+
+const amenityLabel = document.getElementById("amenityLabel");
+const amenityDetailsTitle = document.getElementById("amenityDetailsTitle");
+const amenityDetailsDesc = document.getElementById("amenityDetailsDesc");
+const amenityLocation = document.getElementById("amenityLocation");
+const amenityHours = document.getElementById("amenityHours");
+const amenityFeatures = document.getElementById("amenityFeatures");
+const amenityCapacity = document.getElementById("amenityCapacity");
+const amenityCapacityRow = document.getElementById("amenityCapacityRow");
+const amenityNotes = document.getElementById("amenityNotes");
+const thumbs = document.querySelectorAll(".thumb-wrapper");
+const amenityDropdown = document.getElementById("amenityDropdown");
+const dropdownToggle = document.getElementById("dropdownToggle");
+const dropdownMenu = document.getElementById("dropdownMenu");
+const dropdownLabel = document.getElementById("dropdownLabel");
+const dropdownOptions = document.querySelectorAll(".dropdown-option");
+
+function showAmenityPhoto() {
+  amenityVideo.src = "";
+  amenityVideo.style.display = "none";
+  amenityMain.style.display = "block";
+  amenityPhotoTab.classList.add("active");
+  amenityVideoTab.classList.remove("active");
+}
+
+function showAmenityVideo() {
+  amenityMain.style.display = "none";
+  amenityVideo.style.display = "block";
+  amenityVideo.src = toYouTubeEmbed(amenityVideo.dataset.src) + "?autoplay=1";
+  amenityVideoTab.classList.add("active");
+  amenityPhotoTab.classList.remove("active");
+}
+
+function setAmenity(id) {
+  const data = amenitiesData[id];
+  if (!data) return;
+
+  showAmenityPhoto();
+
+  thumbs.forEach(t => t.classList.remove("active"));
+  const matchingThumb = [...thumbs].find(t => t.dataset.id === id);
+  if (matchingThumb) matchingThumb.classList.add("active");
+
+  dropdownOptions.forEach(o => o.classList.remove("active"));
+  const matchingOption = [...dropdownOptions].find(o => o.dataset.id === id);
+  if (matchingOption) matchingOption.classList.add("active");
+
+  amenityMain.src = data.src;
+  amenityVideo.src = "";
+  amenityVideo.dataset.src = data.video || "";
+  amenityVideoTab.style.display = data.video ? "block" : "none";
+
+  amenityLabel.textContent = data.name;
+  dropdownLabel.textContent = data.name;
+
+  amenityDetailsTitle.textContent = data.name;
+  amenityDetailsDesc.textContent = data.desc;
+
+  amenityLocation.textContent = data.location;
+  amenityHours.textContent = data.hours;
+  amenityFeatures.textContent = data.features;
+  amenityNotes.textContent = data.notes;
+
+  if (data.capacity) {
+    amenityCapacity.textContent = data.capacity;
+    amenityCapacityRow.style.display = "flex";
+  } else {
+    amenityCapacityRow.style.display = "none";
+  }
+}
+
+// default first amenity
+setAmenity("alfresco");
+
+thumbs.forEach(t => {
+  t.addEventListener("click", () => setAmenity(t.dataset.id));
+});
+
+/* ================= AMENITIES CUSTOM DROPDOWN (MOBILE) ================= */
+
+dropdownToggle.addEventListener("click", () => {
+  amenityDropdown.classList.toggle("open");
+});
+
+dropdownOptions.forEach(opt => {
+  opt.addEventListener("click", () => {
+    setAmenity(opt.dataset.id);
+    amenityDropdown.classList.remove("open");
+  });
+});
+
+// close dropdown when tapping outside it
+document.addEventListener("click", (e) => {
+  if (!amenityDropdown.contains(e.target)) {
+    amenityDropdown.classList.remove("open");
+  }
+});
+
+/* ================= NAV TOGGLE (HAMBURGER) ================= */
+
+const navToggle = document.getElementById("navToggle");
+const mainNav = document.getElementById("mainNav");
+
+navToggle.addEventListener("click", () => {
+  const isOpen = mainNav.classList.toggle("open");
+  navToggle.classList.toggle("open", isOpen);
+  navToggle.setAttribute("aria-expanded", isOpen);
+});
+
+// close menu when a link is tapped
+mainNav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("open");
+    navToggle.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+  });
+});
+</script>
+
+</body>
+</html>
