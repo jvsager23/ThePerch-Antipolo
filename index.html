@@ -693,6 +693,9 @@
             </div>
             <p class="promo-note" id="lotPromoNote"></p>
           </div>
+
+          <!-- Structured multi-plan payment terms (Perch 1 / Perch 3 promos) -->
+          <div id="lotPromoPlans" style="display:none;"></div>
         </div>
       </div>
 
@@ -753,29 +756,25 @@ const units = {
     price: 32000000,
     promo: {
       type: "structured",
-      label: "Cash Payment Promo",
+      label: "House & Lot Package Promo (Jun 8\u2013Aug 31, 2026)",
       cash: {
         totalContractPrice: 32000000,
         discountPercent: 20,
+        discountWindowDays: 90,
         discountAmount: 6400000,
-        reservationFee: 1000000,
-        netContractPrice: 24600000,
-        months: 3,
-        monthlyDue: 8533333
+        netContractPrice: 25600000
       },
       installment: {
         downPaymentPercent: 10,
         downPayment: 3200000,
-        reservationFee: 1000000,
-        netSpotDownPayment: 2200000,
+        downPaymentWindowDays: 30,
+        moveInWindowDays: 90,
         balancePercent: 90,
         balance: 28800000,
-        tranche1Months: 24,
-        tranche1Monthly: 342857,
+        tranche1Years: 2,
+        tranche1Rate: 0,
         tranche2Years: 5,
-        tranche2Rate: 8,
-        tranche2Monthly: 417189,
-        monthlyAmortization: 480000
+        tranche2Rate: 8
       }
     }
   },
@@ -805,7 +804,30 @@ const units = {
     baths: 5,
     parking: 4,
     interior: "Unfurnished",
-    price: 40000000,
+    price: 45000000,
+    promo: {
+      type: "structured",
+      label: "House & Lot Package Promo (Jun 8\u2013Aug 31, 2026)",
+      cash: {
+        totalContractPrice: 45000000,
+        discountPercent: 20,
+        discountWindowDays: 90,
+        discountAmount: 9000000,
+        netContractPrice: 36000000
+      },
+      installment: {
+        downPaymentPercent: 10,
+        downPayment: 4500000,
+        downPaymentWindowDays: 30,
+        moveInWindowDays: 90,
+        balancePercent: 90,
+        balance: 40500000,
+        tranche1Years: 2,
+        tranche1Rate: 0,
+        tranche2Years: 5,
+        tranche2Rate: 8
+      }
+    }
   },
 
   "somerset": {
@@ -837,29 +859,25 @@ const units = {
     price: 28000000,
     promo: {
       type: "structured",
-      label: "Cash Payment Promo",
+      label: "House & Lot Package Promo (Jun 8\u2013Aug 31, 2026)",
       cash: {
         totalContractPrice: 28000000,
         discountPercent: 20,
+        discountWindowDays: 90,
         discountAmount: 5600000,
-        reservationFee: 1000000,
-        netContractPrice: 21400000,
-        months: 3,
-        monthlyDue: 7466667
+        netContractPrice: 22400000
       },
       installment: {
         downPaymentPercent: 10,
         downPayment: 2800000,
-        reservationFee: 1000000,
-        netSpotDownPayment: 1800000,
+        downPaymentWindowDays: 30,
+        moveInWindowDays: 90,
         balancePercent: 90,
         balance: 25200000,
-        tranche1Months: 24,
-        tranche1Monthly: 300000,
+        tranche1Years: 2,
+        tranche1Rate: 0,
         tranche2Years: 5,
-        tranche2Rate: 8,
-        tranche2Monthly: 365040,
-        monthlyAmortization: null
+        tranche2Rate: 8
       }
     }
   },
@@ -892,29 +910,25 @@ const units = {
     price: 27000000,
     promo: {
       type: "structured",
-      label: "Cash Payment Promo",
+      label: "House & Lot Package Promo (Jun 8\u2013Aug 31, 2026)",
       cash: {
         totalContractPrice: 27000000,
         discountPercent: 20,
+        discountWindowDays: 90,
         discountAmount: 5400000,
-        reservationFee: 1000000,
-        netContractPrice: 20600000,
-        months: 3,
-        monthlyDue: 7200000
+        netContractPrice: 21600000
       },
       installment: {
         downPaymentPercent: 10,
         downPayment: 2700000,
-        reservationFee: 1000000,
-        netSpotDownPayment: 1700000,
+        downPaymentWindowDays: 30,
+        moveInWindowDays: 90,
         balancePercent: 90,
         balance: 24300000,
-        tranche1Months: 24,
-        tranche1Monthly: 289286,
+        tranche1Years: 2,
+        tranche1Rate: 0,
         tranche2Years: 5,
-        tranche2Rate: 8,
-        tranche2Monthly: 352003,
-        monthlyAmortization: 405000
+        tranche2Rate: 8
       }
     }
   },
@@ -944,29 +958,25 @@ const units = {
     price: 25000000,
     promo: {
       type: "structured",
-      label: "Cash Payment Promo",
+      label: "House & Lot Package Promo (Jun 8\u2013Aug 31, 2026)",
       cash: {
         totalContractPrice: 25000000,
         discountPercent: 20,
+        discountWindowDays: 90,
         discountAmount: 5000000,
-        reservationFee: 1000000,
-        netContractPrice: 19000000,
-        months: 3,
-        monthlyDue: 6666667
+        netContractPrice: 20000000
       },
       installment: {
         downPaymentPercent: 10,
         downPayment: 2500000,
-        reservationFee: 1000000,
-        netSpotDownPayment: 1500000,
+        downPaymentWindowDays: 30,
+        moveInWindowDays: 90,
         balancePercent: 90,
         balance: 22500000,
-        tranche1Months: 24,
-        tranche1Monthly: 267857,
+        tranche1Years: 2,
+        tranche1Rate: 0,
         tranche2Years: 5,
-        tranche2Rate: 8,
-        tranche2Monthly: 325929,
-        monthlyAmortization: null
+        tranche2Rate: 8
       }
     }
   }
@@ -1120,26 +1130,63 @@ function renderPriceBox(u) {
     const i = u.promo.installment;
 
     document.getElementById("promoTCP").innerText = formatPeso(c.totalContractPrice);
-    document.getElementById("promoDiscountLabel").innerText = c.discountPercent + "% Discount (within 60 days)";
+    document.getElementById("promoDiscountLabel").innerText =
+      c.discountPercent + "% Discount" + (c.discountWindowDays ? " (within " + c.discountWindowDays + " days)" : "");
     document.getElementById("promoDiscountAmt").innerText = "-" + formatPeso(c.discountAmount);
-    document.getElementById("promoResFee").innerText = "-" + formatPeso(c.reservationFee);
-    document.getElementById("promoNetCP").innerText = formatPeso(c.netContractPrice);
-    document.getElementById("promoCashMonthsLabel").innerText = "Payable over " + c.months + " months";
-    document.getElementById("promoCashMonthly").innerText = formatPeso(c.monthlyDue) + "/mo";
 
+    // Reservation fee row — only shown when the promo actually specifies one
+    const resFeeRow = document.getElementById("promoResFee").closest(".promo-row");
+    if (c.reservationFee) {
+      resFeeRow.style.display = "flex";
+      document.getElementById("promoResFee").innerText = "-" + formatPeso(c.reservationFee);
+    } else {
+      resFeeRow.style.display = "none";
+    }
+
+    document.getElementById("promoNetCP").innerText = formatPeso(c.netContractPrice);
+
+    // Optional "payable over N months" row — only shown when the promo specifies a monthly cash schedule
+    const cashMonthsRow = document.getElementById("promoCashMonthsLabel").closest(".promo-row");
+    if (c.months) {
+      cashMonthsRow.style.display = "flex";
+      document.getElementById("promoCashMonthsLabel").innerText = "Payable over " + c.months + " months";
+      document.getElementById("promoCashMonthly").innerText = formatPeso(c.monthlyDue) + "/mo";
+    } else {
+      cashMonthsRow.style.display = "none";
+    }
+
+    const totalYears = (i.tranche1Years || 0) + (i.tranche2Years || 0);
     document.getElementById("promoInstallmentHeader").innerText =
-      "Installment (" + i.downPaymentPercent + "% DP / 7 Yrs)";
+      "Installment (" + i.downPaymentPercent + "% DP" + (totalYears ? " / " + totalYears + " Yrs" : "") + ")";
+    document.getElementById("promoDPLabel").innerText =
+      "Down Payment" + (i.downPaymentWindowDays ? " (within " + i.downPaymentWindowDays + " days" +
+        (i.moveInWindowDays ? ", if moving in within " + i.moveInWindowDays + " days" : "") + ")" : "");
     document.getElementById("promoDP").innerText = formatPeso(i.downPayment);
-    document.getElementById("promoInstResFee").innerText = "-" + formatPeso(i.reservationFee);
-    document.getElementById("promoNetSpotDP").innerText = formatPeso(i.netSpotDownPayment);
+
+    // Reservation fee / net spot DP rows — only shown when the promo actually specifies a reservation fee
+    const instResFeeRow = document.getElementById("promoInstResFee").closest(".promo-row");
+    const netSpotDPRow = document.getElementById("promoNetSpotDP").closest(".promo-row");
+    if (i.reservationFee) {
+      instResFeeRow.style.display = "flex";
+      netSpotDPRow.style.display = "flex";
+      document.getElementById("promoInstResFee").innerText = "-" + formatPeso(i.reservationFee);
+      document.getElementById("promoNetSpotDP").innerText = formatPeso(i.netSpotDownPayment);
+    } else {
+      instResFeeRow.style.display = "none";
+      netSpotDPRow.style.display = "none";
+    }
+
     document.getElementById("promoBalance").innerText =
-      i.balancePercent + "% \u2014 " + formatPeso(i.balance);
+      i.balancePercent + "% \u2014 " + formatPeso(i.balance) + (totalYears ? " over " + totalYears + " yrs" : "");
+
+    // Financing tranches — shown as period + rate as stated in the promo terms.
+    // No monthly peso amortization is invented here since the split isn't specified.
     document.getElementById("promoTranche1Label").innerText =
-      "1st " + (i.tranche1Months / 12) + " yrs (0% interest), " + i.tranche1Months + " mos";
-    document.getElementById("promoTranche1Monthly").innerText = formatPeso(i.tranche1Monthly) + "/mo";
+      "First " + i.tranche1Years + " " + (i.tranche1Years === 1 ? "year" : "years");
+    document.getElementById("promoTranche1Monthly").innerText = i.tranche1Rate + "% interest";
     document.getElementById("promoTranche2Label").innerText =
-      "2nd tranche, " + i.tranche2Years + " yrs @ " + i.tranche2Rate + "% p.a.";
-    document.getElementById("promoTranche2Monthly").innerText = formatPeso(i.tranche2Monthly) + "/mo";
+      "Next " + i.tranche2Years + " " + (i.tranche2Years === 1 ? "year" : "years");
+    document.getElementById("promoTranche2Monthly").innerText = i.tranche2Rate + "% p.a.";
 
     const amortRow = document.getElementById("promoAmortRow");
     if (i.monthlyAmortization) {
@@ -1210,6 +1257,70 @@ function closeZoom() {
 
 /* ================= LOTS ================= */
 
+/**
+ * "The Perch 3" payment terms promo (effective per current price sheet).
+ * Applied to all Perch III lots below.
+ */
+const PERCH3_PROMO = {
+  type: "plans",
+  label: "The Perch 3 — Payment Terms",
+  plans: [
+    {
+      name: "1. Outright Cash",
+      terms: [
+        "20% discount",
+        "Payable within 3 months"
+      ]
+    },
+    {
+      name: "2. Modified Cash — 50/50",
+      terms: [
+        "1st 50%: Outright, with 20% discount",
+        "Remaining 50%: Payable in 5 years at 0% interest"
+      ]
+    },
+    {
+      name: "3a. Installment — 24% Down Payment",
+      terms: [
+        "DP option A: Outright DP with 10% discount on DP",
+        "DP option B: DP payable in 3 months, no discount",
+        "76% balance payable in 5 years at 0% interest"
+      ]
+    },
+    {
+      name: "3b. Installment — 30% Down Payment",
+      terms: [
+        "DP payable in 36 months at 0% interest",
+        "70% balance payable in 7 years at 8% p.a."
+      ]
+    }
+  ]
+};
+
+/**
+ * "The Perch 1" payment terms promo (effective per current price sheet).
+ * Applied to all Perch I lots below.
+ */
+const PERCH1_PROMO = {
+  type: "plans",
+  label: "The Perch 1 — Payment Terms",
+  plans: [
+    {
+      name: "1. Outright Cash",
+      terms: [
+        "15% discount"
+      ]
+    },
+    {
+      name: "2. 50/50",
+      terms: [
+        "50% DP: Outright, with 7.5% discount on DP — payable within 60 days",
+        "50% balance: Payable in 2 years at 0% interest"
+      ]
+    }
+  ]
+};
+
 const lots = {
   // Verified against "THE PERCH 3 INVENTORY, promo period Mar 1 - May 31, 2026": Blk 14, Lot 10 = 514 sqm @ ₱25,000/sqm.
   "Perch III: Blk 14, Lot 10": {
@@ -1218,7 +1329,8 @@ const lots = {
     images: ["Lots/b14l10.png"],
     video: null,
     lotArea: "514 sqm",
-    pricePerSqm: 25000
+    pricePerSqm: 25000,
+    promo: PERCH3_PROMO
   },
   // Verified: Blk 14, Lot 9 = 520 sqm @ ₱25,000/sqm — but this lot is marked CLOSED (sold) on the
   // inventory sheet. Recommend removing this card or confirming with the broker before publishing.
@@ -1228,18 +1340,18 @@ const lots = {
     images: ["Lots/bl14l9.png"],
     video: null,
     lotArea: "520 sqm",
-    pricePerSqm: 25000
+    pricePerSqm: 25000,
+    promo: PERCH3_PROMO
   },
-  // Area not clearly legible on the Blk 4 rows of the Perch III sheet (photo too blurred). Using the
-  // 567 sqm area you provided; price is an ESTIMATE based on the ₱25,000/sqm rate charged for other
-  // regular (non-corner) Perch III lots — please confirm the actual price with your price list.
+  // Verified against "THE PERCH 3 INVENTORY": Blk 4, Lot 3 = 567 sqm @ ₱30,000/sqm (TCP ₱17,010,000).
   "Perch III: Blk 4, Lot 3": {
     title: "Perch III: Blk 4, Lot 3",
     desc: "567 sqm residential lot along the road, ideal for development.",
     images: ["Lots/b4l3.png"],
     video: null,
     lotArea: "567 sqm",
-    pricePerSqm: 25000
+    pricePerSqm: 30000,
+    promo: PERCH3_PROMO
   },
   // Area not found in the photographed Perch I sheet (which stops at Blk 10). Using the 657 sqm area
   // you provided; price is an ESTIMATE based on the ₱40,000/sqm rate for regular Perch I lots —
@@ -1250,7 +1362,8 @@ const lots = {
     images: ["Lots/bl12l8.png"],
     video: null,
     lotArea: "657 sqm",
-    pricePerSqm: 40000
+    pricePerSqm: 40000,
+    promo: PERCH1_PROMO
   },
   // Area not confirmed on the photographed Perch I sheet (Blk 8, Lot 4 there is listed at 583 sqm).
   // Using the 526 sqm area you provided; price is an ESTIMATE at the ₱40,000/sqm regular-lot rate —
@@ -1261,7 +1374,8 @@ const lots = {
     images: ["Lots/bl8l4_01435.png"],
     video: null,
     lotArea: "526 sqm",
-    pricePerSqm: 40000
+    pricePerSqm: 40000,
+    promo: PERCH1_PROMO
   },
   // Verified against "THE PERCH1 INVENTORY AS OF NOVEMBER 1, 2025": Blk 10, Lot 6 = 604 sqm @ ₱40,000/sqm.
   "Perch I: Blk 10, Lot 6": {
@@ -1270,7 +1384,8 @@ const lots = {
     images: ["Lots/bl10l6.png"],
     video: null,
     lotArea: "604 sqm",
-    pricePerSqm: 40000
+    pricePerSqm: 40000,
+    promo: PERCH1_PROMO
   },
   // Lot 12 itself isn't a labeled row on the photographed sheet, but every other Blk 10 lot shown
   // (10, 11, 13, 14) is 604 sqm @ ₱40,000/sqm, so this is a high-confidence match, not a guess.
@@ -1280,7 +1395,8 @@ const lots = {
     images: ["Lots/bl10l12.png"],
     video: null,
     lotArea: "604 sqm",
-    pricePerSqm: 40000
+    pricePerSqm: 40000,
+    promo: PERCH1_PROMO
   },
   // Verified against "THE PERCH1 INVENTORY AS OF NOVEMBER 1, 2025": Blk 9, Lot 8 = 502 sqm @ ₱40,000/sqm.
   "Perch I: Blk 9, Lot 8": {
@@ -1289,7 +1405,8 @@ const lots = {
     images: ["Lots/bl9l8.png"],
     video: null,
     lotArea: "502 sqm",
-    pricePerSqm: 40000
+    pricePerSqm: 40000,
+    promo: PERCH1_PROMO
   }
 };
 
@@ -1302,9 +1419,14 @@ function formatPesoPerSqm(amount) {
 }
 
 /**
- * Fills in the lot's price-per-sqm and the promo dropdown panel
- * (list price, discounted price, and promo note). Panel starts closed.
- * If the lot has no promo, shows "No promo yet."
+ * Fills in the lot's price-per-sqm and the promo dropdown panel. Supports
+ * three states:
+ *  1. No promo at all             -> "No promo yet."
+ *  2. Structured payment "plans"  -> multiple named plans, each with a list
+ *     of terms (used for The Perch 1 / The Perch 3 promos)
+ *  3. Legacy simple promo         -> list price/sqm, discounted price/sqm,
+ *     free-text note
+ * Panel starts closed.
  */
 function renderLotPriceBox(lot) {
   document.getElementById("lotPriceSpec").innerText = formatPesoPerSqm(lot.pricePerSqm);
@@ -1315,19 +1437,58 @@ function renderLotPriceBox(lot) {
   const priceBox = document.getElementById("lotPriceBox");
   const emptyEl = document.getElementById("lotPromoEmpty");
   const contentEl = document.getElementById("lotPromoContent");
+  const plansEl = document.getElementById("lotPromoPlans");
 
-  if (lot.promo) {
-    priceBox.classList.add("has-promo");
-    emptyEl.style.display = "none";
+  emptyEl.style.display = "none";
+  contentEl.style.display = "none";
+  plansEl.style.display = "none";
+  plansEl.innerHTML = "";
+
+  if (!lot.promo) {
+    priceBox.classList.remove("has-promo");
+    emptyEl.style.display = "block";
+    return;
+  }
+
+  priceBox.classList.add("has-promo");
+
+  if (lot.promo.type === "plans" && lot.promo.plans) {
+    plansEl.style.display = "block";
+
+    if (lot.promo.label) {
+      const heading = document.createElement("p");
+      heading.className = "promo-note";
+      heading.style.marginBottom = "10px";
+      heading.innerText = lot.promo.label;
+      plansEl.appendChild(heading);
+    }
+
+    lot.promo.plans.forEach(plan => {
+      const section = document.createElement("div");
+      section.className = "promo-section";
+
+      const h5 = document.createElement("h5");
+      h5.innerText = plan.name;
+      section.appendChild(h5);
+
+      (plan.terms || []).forEach(term => {
+        const row = document.createElement("div");
+        row.className = "promo-row";
+        const span = document.createElement("span");
+        span.innerText = term;
+        row.appendChild(span);
+        section.appendChild(row);
+      });
+
+      plansEl.appendChild(section);
+    });
+
+  } else {
     contentEl.style.display = "block";
     document.getElementById("lotPromoOriginal").innerText = formatPesoPerSqm(lot.pricePerSqm);
     document.getElementById("lotPromoLabel").innerText = lot.promo.label || "Promo Price";
     document.getElementById("lotPromoDiscounted").innerText = formatPesoPerSqm(lot.promo.pricePerSqm);
     document.getElementById("lotPromoNote").innerText = lot.promo.note || "";
-  } else {
-    priceBox.classList.remove("has-promo");
-    contentEl.style.display = "none";
-    emptyEl.style.display = "block";
   }
 }
 
