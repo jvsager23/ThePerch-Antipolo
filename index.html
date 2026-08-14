@@ -511,6 +511,7 @@
 
       <div id="tourView" style="display:none;">
         <iframe id="tourVideo" class="yt-frame" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+        <video id="tourVideoLocal" class="yt-frame" controls playsinline style="display:none;"></video>
         <div class="tour-thumbs" id="tourThumbContainer"></div>
       </div>
     </div>
@@ -719,11 +720,56 @@
 <script>
 let currentUnit = "";
 
+/**
+ * Detects whether a `video` value is a local media file (e.g. "Videos/foo.mp4")
+ * rather than a YouTube URL/ID, so callers can render a <video> tag instead
+ * of trying (and failing) to embed it as YouTube.
+ */
+function isLocalVideoFile(value) {
+  if (!value) return false;
+  return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(value.trim());
+}
+
 function toYouTubeEmbed(url) {
   if (!url) return "";
-  const idMatch = url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{11})/);
-  const id = idMatch ? idMatch[1] : url; // allow passing a bare video ID too
-  return `https://www.youtube.com/embed/${id}`;
+  const idMatch = url.match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/);
+  if (idMatch) return `https://www.youtube.com/embed/${idMatch[1]}`;
+  // Fallback: a bare 11-character video ID passed directly (no full URL)
+  if (/^[A-Za-z0-9_-]{11}$/.test(url.trim())) {
+    return `https://www.youtube.com/embed/${url.trim()}`;
+  }
+  // Couldn't parse a YouTube ID from this — don't feed a broken src to the iframe
+  console.warn("toYouTubeEmbed: could not parse a YouTube video ID from:", url);
+  return "";
+}
+
+/**
+ * Renders whichever video source a unit/lot has into the given tour view:
+ *  - a local file (e.g. "Videos/rochester-tour.mp4") -> shown in a <video> tag
+ *  - a YouTube URL/ID                                -> shown in the YouTube <iframe>
+ * `iframeEl` and `videoEl` are the elements for that modal's tour view.
+ */
+function renderTourVideo(rawVideo, iframeEl, videoEl) {
+  if (!rawVideo) {
+    if (iframeEl) iframeEl.src = "";
+    if (videoEl) { videoEl.pause(); videoEl.removeAttribute("src"); videoEl.load(); videoEl.style.display = "none"; }
+    if (iframeEl) iframeEl.style.display = "none";
+    return;
+  }
+
+  if (isLocalVideoFile(rawVideo)) {
+    if (iframeEl) { iframeEl.src = ""; iframeEl.style.display = "none"; }
+    if (videoEl) {
+      videoEl.src = rawVideo;
+      videoEl.style.display = "block";
+    }
+  } else {
+    if (videoEl) { videoEl.pause(); videoEl.removeAttribute("src"); videoEl.load(); videoEl.style.display = "none"; }
+    if (iframeEl) {
+      iframeEl.src = toYouTubeEmbed(rawVideo);
+      iframeEl.style.display = "block";
+    }
+  }
 }
 
 const units = {
@@ -949,6 +995,7 @@ const units = {
       { label: "Lower Ground Floor", src: "Floor Plans/cc-uh-fp/uh-lg.jpeg" },
       { label: "Upper Ground Floor", src: "Floor Plans/cc-uh-fp/uh-ug.jpeg" }
     ],
+    video: "https://youtube.com/shorts/5dSV95U6lEo?si=rE5JVAqunCisyL99",
     floor: "202 sqm",
     lot: "300 sqm",
     beds: 4,
@@ -1036,7 +1083,7 @@ function openModal(key) {
     if (index === 0) t.classList.add("active");
 
     t.onclick = () => {
-      document.getElementById("tourVideo").src = toYouTubeEmbed(tour.video);
+      renderTourVideo(tour.video, document.getElementById("tourVideo"), document.getElementById("tourVideoLocal"));
       document.querySelectorAll(".tour-thumbs img")
         .forEach(el => el.classList.remove("active"));
       t.classList.add("active");
@@ -1219,17 +1266,16 @@ function switchModalView(view, btn) {
   document.getElementById("planView").style.display = view === "plans" ? "block" : "none";
   document.getElementById("tourView").style.display = view === "tour" ? "block" : "none";
 
-  const video = document.getElementById("tourVideo");
   if (view === "tour") {
     const tours = units[currentUnit]?.videoTours;
-
-    if (tours && tours.length) {
-      video.src = toYouTubeEmbed(tours[0].video);
-    } else {
-      video.src = toYouTubeEmbed(units[currentUnit]?.video);
-    }
+    const rawVideo = (tours && tours.length) ? tours[0].video : units[currentUnit]?.video;
+    renderTourVideo(rawVideo, document.getElementById("tourVideo"), document.getElementById("tourVideoLocal"));
   } else {
-    video.src = "";
+    document.getElementById("tourVideo").src = "";
+    const localVid = document.getElementById("tourVideoLocal");
+    localVid.pause();
+    localVid.removeAttribute("src");
+    localVid.load();
   }
 
   document.querySelectorAll(".gallery-tabs button").forEach(b => b.classList.remove("active"));
@@ -1244,6 +1290,10 @@ function openPlanZoom() {
 function closeModal() {
   document.getElementById("unitModal").style.display = "none";
   document.getElementById("tourVideo").src = "";
+  const localVid = document.getElementById("tourVideoLocal");
+  localVid.pause();
+  localVid.removeAttribute("src");
+  localVid.load();
 }
 
 function openZoom() {
@@ -1327,7 +1377,7 @@ const lots = {
     title: "Perch III: Blk 14, Lot 10",
     desc: "514 sqm lot surrounded by trees and greenery.",
     images: ["Lots/b14l10.png"],
-    video: null,
+    video: "https://youtu.be/BYT6U6erPC4?si=m3RLe0YuPRh2Mp9R",
     lotArea: "514 sqm",
     pricePerSqm: 25000,
     promo: PERCH3_PROMO
@@ -1338,7 +1388,7 @@ const lots = {
     title: "Perch III: Blk 14, Lot 9",
     desc: "520 sqm corner lot along a curved road. (SOLD — please confirm availability before listing.)",
     images: ["Lots/bl14l9.png"],
-    video: null,
+    video: "https://youtu.be/BYT6U6erPC4?si=m3RLe0YuPRh2Mp9R",
     lotArea: "520 sqm",
     pricePerSqm: 25000,
     promo: PERCH3_PROMO
@@ -1353,9 +1403,7 @@ const lots = {
     pricePerSqm: 30000,
     promo: PERCH3_PROMO
   },
-  // Area not found in the photographed Perch I sheet (which stops at Blk 10). Using the 657 sqm area
-  // you provided; price is an ESTIMATE based on the ₱40,000/sqm rate for regular Perch I lots —
-  // please confirm the actual price.
+  // Verified against price-sheet computations (Aug 2026): Blk 12, Lot 8 = 657 sqm @ ₱40,000/sqm (TCP ₱26,280,000).
   "Perch I: Blk 12, Lot 8": {
     title: "Perch I: Blk 12, Lot 8",
     desc: "657 sqm rectangular lot beside a concrete road.",
@@ -1406,6 +1454,16 @@ const lots = {
     video: null,
     lotArea: "502 sqm",
     pricePerSqm: 40000,
+    promo: PERCH1_PROMO
+  },
+  // Verified against price-sheet computations (Aug 2026): Blk 6, Lot 10 = 611 sqm @ ₱41,000/sqm (TCP ₱25,051,000).
+  "Perch I: Blk 6, Lot 10": {
+    title: "Perch I: Blk 6, Lot 10",
+    desc: "611 sqm lot with convenient road access.",
+    images: ["Lots/bl6l10.png"],
+    video: null,
+    lotArea: "611 sqm",
+    pricePerSqm: 41000,
     promo: PERCH1_PROMO
   }
 };
@@ -1615,19 +1673,6 @@ const brokers = [
 
 const REDWOOD_FB_PAGE = "https://www.facebook.com/profile.php?id=61590744566641";
 
-/* ================= ICONS & AVATARS ================= */
-/* Icon images live in the /Icons folder — drop your downloaded PNGs there
-   using these exact filenames (all icons are shown inside a red circle
-   background to match the site's color scheme):
-     Icons/message.png    - used for "Send Message to FB Page"
-     Icons/brokers.png    - used for "Choose a Broker"
-     Icons/call.png       - used for the Call option
-     Icons/whatsapp.png   - used for the WhatsApp option
-     Icons/viber.png      - used for the Viber option
-     Icons/messenger.png  - used for each broker's Messenger option
-   Tip: use plain white / white-silhouette PNGs (transparent background)
-   so they show up cleanly on the red circle. */
-
 const ICONS = {
   call: `<img src="Socmed Icons/call.png" alt="Call">`,
   whatsapp: `<img src="Socmed Icons/whatsapp.webp" alt="WhatsApp">`,
@@ -1637,30 +1682,18 @@ const ICONS = {
 
 const AVATAR_COLORS = ["#C02020", "#A00000", "#C00000", "#8B0000", "#B22222", "#CD5C5C", "#A52A2A", "#7A0C0C"];
 
-/**
- * Deterministically picks a background color for a broker's initials
- * avatar based on their name, so the same broker always gets the same color.
- */
 function colorForName(name) {
   let hash = 0;
   for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
   return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
 }
 
-/**
- * Builds a two-letter initials string from a broker's full name
- * (first letter of first name + first letter of last name).
- */
 function initialsForName(name) {
   const parts = name.trim().split(/\s+/);
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-/**
- * Returns the HTML for a broker's avatar. Uses their photo if one is set
- * (broker.photo), otherwise falls back to a colored circle with initials.
- */
 function brokerAvatarHtml(broker) {
   if (broker.photo) {
     return `<span class="inquire-icon broker-avatar broker-avatar-photo"><img src="${broker.photo}" alt="${broker.name}"></span>`;
@@ -1755,8 +1788,6 @@ function scrollCards(dir) {
     behavior: "smooth"
   });
 }
-
-/* ================= SEE MORE BUTTON (MOBILE) ================= */
 
 function seeMoreCards() {
   document.getElementById("cardsContainer").scrollBy({
