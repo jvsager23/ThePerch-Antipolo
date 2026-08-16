@@ -213,6 +213,7 @@
         <div class="amenities-main">
           <img id="amenityMainImg" src="Amenities/alfresco.jpg" alt="Featured amenity">
           <iframe id="amenityMainVideo" class="yt-frame" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+          <video id="amenityMainVideoLocal" class="yt-frame" controls playsinline style="display:none;"></video>
 
           <div class="amenity-label" id="amenityLabel">
             Alfresco Lounge
@@ -946,7 +947,7 @@ const units = {
       { label: "Lower Ground Floor", src: "Floor Plans/cc-dh-fp/dh-lg.jpeg" },
       { label: "Upper Ground Floor", src: "Floor Plans/cc-dh-fp/dh-ug.jpeg" }
     ],
-    video: "https://www.youtube.com/watch?v=DY8sd_sXiRE",
+    video: "https://youtu.be/DY8sd_sXiRE?si=zOfSK90QBnf2ojuU",
     floor: "202 sqm",
     lot: "300 sqm",
     beds: 4,
@@ -1995,6 +1996,7 @@ const amenitiesData = {
 
 const amenityMain = document.getElementById("amenityMainImg");
 const amenityVideo = document.getElementById("amenityMainVideo");
+const amenityVideoLocal = document.getElementById("amenityMainVideoLocal");
 const amenityPhotoTab = document.getElementById("amenityPhotoTab");
 const amenityVideoTab = document.getElementById("amenityVideoTab");
 
@@ -2017,6 +2019,10 @@ const dropdownOptions = document.querySelectorAll(".dropdown-option");
 function showAmenityPhoto() {
   amenityVideo.src = "";
   amenityVideo.style.display = "none";
+  amenityVideoLocal.pause();
+  amenityVideoLocal.removeAttribute("src");
+  amenityVideoLocal.load();
+  amenityVideoLocal.style.display = "none";
   amenityMain.style.display = "block";
   amenityPhotoTab.classList.add("active");
   amenityVideoTab.classList.remove("active");
@@ -2024,10 +2030,35 @@ function showAmenityPhoto() {
 
 function showAmenityVideo() {
   amenityMain.style.display = "none";
-  amenityVideo.style.display = "block";
-  amenityVideo.src = toYouTubeEmbed(amenityVideo.dataset.src) + "?autoplay=1";
   amenityVideoTab.classList.add("active");
   amenityPhotoTab.classList.remove("active");
+
+  const raw = amenityVideo.dataset.src;
+
+  if (!raw) {
+    amenityVideo.style.display = "none";
+    amenityVideoLocal.style.display = "none";
+    return;
+  }
+
+  if (isLocalVideoFile(raw)) {
+    // Local mp4/webm/etc — play it with a real <video> tag, not the YouTube iframe
+    amenityVideo.src = "";
+    amenityVideo.style.display = "none";
+    amenityVideoLocal.src = raw;
+    amenityVideoLocal.style.display = "block";
+    amenityVideoLocal.play().catch(() => {});
+  } else {
+    // YouTube URL/ID — use the iframe
+    amenityVideoLocal.pause();
+    amenityVideoLocal.removeAttribute("src");
+    amenityVideoLocal.load();
+    amenityVideoLocal.style.display = "none";
+
+    const embed = toYouTubeEmbed(raw);
+    amenityVideo.src = embed ? embed + "?autoplay=1" : "";
+    amenityVideo.style.display = embed ? "block" : "none";
+  }
 }
 
 function setAmenity(id) {
