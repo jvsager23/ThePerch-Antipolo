@@ -1173,6 +1173,25 @@ button.inquire-option { border: none; width: 100%; font: inherit; }
   .amenity-details { max-width: 420px; width: 100%; margin: 0 auto; }
   .location-container { flex-direction: column; }
   .location-map iframe { min-height: 300px; }
+
+  /* Dropdown must push content down on mobile, not float over it */
+  .dropdown-menu {
+    position: static;
+    max-height: 0;
+    box-shadow: none;
+    border: 2px solid var(--primary-red-dark);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    margin-top: -2px;
+  }
+
+  .amenities-dropdown.open .dropdown-menu {
+    max-height: 1000px;
+  }
+
+  .amenities-dropdown.open .dropdown-toggle {
+    border-radius: 12px 12px 0 0;
+  }
 }
 
 @media (max-width: 768px) {
