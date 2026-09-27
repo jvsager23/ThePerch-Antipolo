@@ -205,15 +205,8 @@
 
       <div class="amenities-main-col">
 
-        <div class="amenities-view-tabs">
-          <button class="active" id="amenityPhotoTab" onclick="showAmenityPhoto()">PHOTO</button>
-          <button id="amenityVideoTab" onclick="showAmenityVideo()">VIDEO</button>
-        </div>
-
         <div class="amenities-main">
           <img id="amenityMainImg" src="Amenities/alfresco.jpg" alt="Featured amenity">
-          <iframe id="amenityMainVideo" class="yt-frame" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
-          <video id="amenityMainVideoLocal" class="yt-frame" controls playsinline style="display:none;"></video>
 
           <div class="amenity-label" id="amenityLabel">
             Alfresco Lounge
@@ -1634,34 +1627,142 @@ function openLotZoom() {
   document.getElementById("zoomImg").src = document.getElementById("lotMainImage").src;
 }
 
-function scrollLotCards(dir) {
-  document.getElementById("lotCardsContainer").scrollBy({
-    left: dir * 320,
-    behavior: "smooth"
+/* ================= INFINITE CAROUSEL (Units + Lots) ================= */
+
+/**
+ * Turns a horizontally-scrolling `.cards` container into a true infinite
+ * carousel:
+ *  - clones the full card set before and after the real set, so there's
+ *    always more track to scroll onto in either direction
+ *  - starts the visible scroll position on the middle (real) set
+ *  - when the user scrolls (or the arrow buttons animate) into a cloned
+ *    set, silently (no animation) snaps back to the matching position in
+ *    the real set once scrolling settles, so it feels endless
+ *  - exposes `next()` / `prev()` used by the arrow buttons, which always
+ *    animate smoothly and never "run out" of cards to move to
+ */
+function createInfiniteCarousel(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return null;
+
+  const originalCards = Array.from(container.children);
+  if (originalCards.length === 0) return null;
+
+  // Build [clone][original][clone] so there's always room to scroll
+  // in either direction without hitting a hard edge.
+  const beforeClones = originalCards.map(card => card.cloneNode(true));
+  const afterClones = originalCards.map(card => card.cloneNode(true));
+
+  beforeClones.forEach(clone => {
+    clone.setAttribute("aria-hidden", "true");
+    container.appendChild(clone); // placeholder append, reordered below
   });
+
+  // Rebuild container content in the right order: before-clones, originals, after-clones
+  container.innerHTML = "";
+  beforeClones.forEach(c => container.appendChild(c));
+  originalCards.forEach(c => container.appendChild(c));
+  afterClones.forEach(c => {
+    c.setAttribute("aria-hidden", "true");
+    container.appendChild(c);
+  });
+
+  container.style.scrollBehavior = "auto";
+
+  let setWidth = 0;
+  let isJumping = false;
+  let settleTimer = null;
+
+  function measure() {
+    // Width (including gaps) of exactly one full set of cards.
+    const first = container.children[0];
+    const firstOfSecondSet = container.children[originalCards.length];
+    setWidth = firstOfSecondSet.offsetLeft - first.offsetLeft;
+  }
+
+  function goToRealSet(instant) {
+    isJumping = true;
+    container.style.scrollBehavior = "auto";
+    container.scrollLeft = setWidth + (container.scrollLeft % setWidth || 0);
+    requestAnimationFrame(() => { isJumping = false; });
+  }
+
+  function init() {
+    measure();
+    // Start centered on the real (middle) set.
+    container.scrollLeft = setWidth;
+  }
+
+  // Re-measure and re-center on resize (card widths can change responsively).
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const ratio = container.scrollLeft / (setWidth || 1);
+      measure();
+      container.scrollLeft = setWidth * ratio;
+    }, 150);
+  });
+
+  // Once the user (or an animated scrollBy) stops scrolling, silently
+  // wrap back into the real set if we've drifted into a cloned one.
+  container.addEventListener("scroll", () => {
+    if (isJumping) return;
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(() => {
+      if (!setWidth) return;
+      const min = setWidth * 0.5;
+      const max = setWidth * 1.5;
+      if (container.scrollLeft < min || container.scrollLeft > max) {
+        goToRealSet();
+      }
+    }, 120);
+  });
+
+  function cardStep() {
+    const card = originalCards[0];
+    const style = window.getComputedStyle(container);
+    const gap = parseFloat(style.columnGap || style.gap || 0) || 0;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function next() {
+    container.style.scrollBehavior = "smooth";
+    container.scrollBy({ left: cardStep(), behavior: "smooth" });
+  }
+
+  function prev() {
+    container.style.scrollBehavior = "smooth";
+    container.scrollBy({ left: -cardStep(), behavior: "smooth" });
+  }
+
+  // Wait a frame so layout is settled before measuring.
+  requestAnimationFrame(init);
+  window.addEventListener("load", init);
+
+  return { next, prev };
+}
+
+const unitsCarousel = createInfiniteCarousel("cardsContainer");
+const lotsCarousel = createInfiniteCarousel("lotCardsContainer");
+
+function scrollCards(dir) {
+  if (!unitsCarousel) return;
+  if (dir > 0) unitsCarousel.next(); else unitsCarousel.prev();
+}
+
+function seeMoreCards() {
+  if (unitsCarousel) unitsCarousel.next();
+}
+
+function scrollLotCards(dir) {
+  if (!lotsCarousel) return;
+  if (dir > 0) lotsCarousel.next(); else lotsCarousel.prev();
 }
 
 function seeMoreLotCards() {
-  document.getElementById("lotCardsContainer").scrollBy({
-    left: 300,
-    behavior: "smooth"
-  });
+  if (lotsCarousel) lotsCarousel.next();
 }
-
-const lotCardsContainer = document.getElementById("lotCardsContainer");
-const lotSeeMoreBtn = document.getElementById("lotSeeMoreBtn");
-
-function updateLotSeeMoreVisibility() {
-  const atEnd =
-    lotCardsContainer.scrollLeft + lotCardsContainer.clientWidth >=
-    lotCardsContainer.scrollWidth - 10;
-
-  lotSeeMoreBtn.classList.toggle("hidden", atEnd);
-}
-
-lotCardsContainer.addEventListener("scroll", updateLotSeeMoreVisibility);
-window.addEventListener("load", updateLotSeeMoreVisibility);
-window.addEventListener("resize", updateLotSeeMoreVisibility);
 
 const brokers = [
   { name: "Con Frias",            phone: "0915-044-5909", tel: "+639150445909", fb: "https://www.facebook.com/con.frias", photo: "Broker_PFP/Con-Frias.jpg" },
@@ -1783,41 +1884,11 @@ function showBrokerDetail(index) {
   showInquireView("brokerDetail");
 }
 
-function scrollCards(dir) {
-  document.getElementById("cardsContainer").scrollBy({
-    left: dir * 320,
-    behavior: "smooth"
-  });
-}
-
-function seeMoreCards() {
-  document.getElementById("cardsContainer").scrollBy({
-    left: 300,
-    behavior: "smooth"
-  });
-}
-
-const cardsContainer = document.getElementById("cardsContainer");
-const seeMoreBtn = document.getElementById("seeMoreBtn");
-
-function updateSeeMoreVisibility() {
-  const atEnd =
-    cardsContainer.scrollLeft + cardsContainer.clientWidth >=
-    cardsContainer.scrollWidth - 10;
-
-  seeMoreBtn.classList.toggle("hidden", atEnd);
-}
-
-cardsContainer.addEventListener("scroll", updateSeeMoreVisibility);
-window.addEventListener("load", updateSeeMoreVisibility);
-window.addEventListener("resize", updateSeeMoreVisibility);
-
 /* ================= AMENITIES FEATURE ================= */
 const amenitiesData = {
   "alfresco": {
     name: "Alfresco Lounge",
     src: "alfresco.jpg",
-    video: "Videos/alfresco-tour.mp4",
     desc: "An open-air lounge perfect for relaxed gatherings and casual dining with family and friends.",
     location: "Ground level, beside the main clubhouse",
     hours: "6:00 AM – 10:00 PM daily",
@@ -1828,7 +1899,6 @@ const amenitiesData = {
   "amphitheater": {
     name: "Amphitheater",
     src: "amotheater.jpg",
-    video: "Videos/amphitheater-tour.mp4",
     desc: "A tiered outdoor venue for community events, movie nights, and performances under the stars.",
     location: "Central community park",
     hours: "9:00 AM – 9:00 PM daily",
@@ -1839,7 +1909,6 @@ const amenitiesData = {
   "bball-outdoor": {
     name: "Outdoor Basketball & Tennis Court",
     src: "bball1.jpg",
-    video: "Videos/bball-outdoor-tour.mp4",
     desc: "Multi-purpose outdoor courts for basketball and tennis, great for staying active or hosting a match.",
     location: "Near the east community entrance",
     hours: "5:00 AM – 9:00 PM daily",
@@ -1850,7 +1919,6 @@ const amenitiesData = {
   "bball-indoor": {
     name: "Indoor Basketball Court",
     src: "bball2.jpg",
-    video: "Videos/bball-indoor-tour.mp4",
     desc: "A full covered court that lets residents play basketball rain or shine, any time of day.",
     location: "Sports complex, ground floor",
     hours: "6:00 AM – 10:00 PM daily",
@@ -1861,7 +1929,6 @@ const amenitiesData = {
   "tt-billiards": {
     name: "Table Tennis & Billiards",
     src: "btcourt.jpg",
-    video: "Videos/tt-billiards-tour.mp4",
     desc: "A dedicated games room with table tennis and billiards for casual competition and downtime.",
     location: "Sports complex, second floor",
     hours: "8:00 AM – 10:00 PM daily",
@@ -1872,7 +1939,6 @@ const amenitiesData = {
   "driving-range": {
     name: "Driving Range",
     src: "drivingrange.png",
-    video: "Videos/driving-range-tour.mp4",
     desc: "A practice driving range where golf enthusiasts can perfect their swing without leaving the community.",
     location: "West side, adjacent to Diamond Park",
     hours: "6:00 AM – 6:00 PM daily",
@@ -1883,7 +1949,6 @@ const amenitiesData = {
   "playground": {
     name: "Playground",
     src: "pg2.jpg",
-    video: "Videos/playground-tour.mp4",
     desc: "A safe, well-equipped play area designed for kids to run, climb, and make new friends.",
     location: "Beside the amphitheater, central park",
     hours: "6:00 AM – 8:00 PM daily",
@@ -1894,7 +1959,6 @@ const amenitiesData = {
   "diamond-park": {
     name: "Diamond Park",
     src: "diamondlake.jpg",
-    video: "Videos/diamond-park-tour.mp4",
     desc: "A scenic park with peaceful walking paths and picturesque views for residents to unwind.",
     location: "West end of the community",
     hours: "Open 24 hours",
@@ -1905,7 +1969,6 @@ const amenitiesData = {
   "wyndells": {
     name: "Wyndell's",
     src: "wyndells.jpg",
-    video: "Videos/wyndells-tour.mp4",
     desc: "The community's signature clubhouse and dining spot — a relaxed space to gather and enjoy great food.",
     location: "Main clubhouse entrance",
     hours: "7:00 AM – 11:00 PM daily",
@@ -1916,7 +1979,6 @@ const amenitiesData = {
   "fishing-lagoon": {
     name: "Fishing Lagoon",
     src: "fishlagoon.png",
-    video: "Videos/fishing-lagoon-tour.mp4",
     desc: "A tranquil lagoon set aside for casual fishing and quiet moments by the water.",
     location: "East end of the community, near the nature trail",
     hours: "6:00 AM – 6:00 PM daily",
@@ -1927,7 +1989,6 @@ const amenitiesData = {
   "camping-site": {
     name: "Camping Site",
     src: "camping.jpg",
-    video: "Videos/camping-site-tour.mp4",
     desc: "A designated outdoor area for residents to set up tents and enjoy an overnight nature experience.",
     location: "Wooded lot beside the nature trail",
     hours: "Check-in 2:00 PM, check-out 11:00 AM",
@@ -1938,7 +1999,6 @@ const amenitiesData = {
   "swimming-pool": {
     name: "Swimming Pool",
     src: "swim.jpg",
-    video: "Videos/swimming-pool-tour.mp4",
     desc: "A resort-style pool for laps, relaxation, and weekend family time.",
     location: "Beside Wyndell's clubhouse",
     hours: "6:00 AM – 8:00 PM daily",
@@ -1949,7 +2009,6 @@ const amenitiesData = {
   "sports-center": {
     name: "Sports Center",
     src: "sportscenter.jpg",
-    video: "Videos/sports-center-tour.mp4",
     desc: "A multi-purpose facility for fitness and recreational activities beyond the courts.",
     location: "Adjacent to the indoor basketball court",
     hours: "5:00 AM – 10:00 PM daily",
@@ -1960,7 +2019,6 @@ const amenitiesData = {
   "community-center": {
     name: "Community Center",
     src: "cummunity.png",
-    video: "Videos/community-center-tour.mp4",
     desc: "A shared venue for meetings, celebrations, and neighborhood gatherings.",
     location: "Central community area, near the amphitheater",
     hours: "8:00 AM – 10:00 PM daily",
@@ -1971,7 +2029,6 @@ const amenitiesData = {
   "gated-access": {
     name: "Gated Access",
     src: "gate.png",
-    video: "Videos/gated-access-tour.mp4",
     desc: "24/7 secured entry points with guards on duty, giving residents peace of mind.",
     location: "Main and secondary community entrances",
     hours: "Open 24 hours",
@@ -1982,7 +2039,6 @@ const amenitiesData = {
   "city-sky-view": {
     name: "City Sky View",
     src: "city.png",
-    video: "Videos/city-sky-view-tour.mp4",
     desc: "An elevated viewing deck overlooking the city skyline, perfect for sunsets and quiet evenings.",
     location: "Top level of the clubhouse",
     hours: "5:00 AM – 11:00 PM daily",
@@ -1994,10 +2050,6 @@ const amenitiesData = {
 };
 
 const amenityMain = document.getElementById("amenityMainImg");
-const amenityVideo = document.getElementById("amenityMainVideo");
-const amenityVideoLocal = document.getElementById("amenityMainVideoLocal");
-const amenityPhotoTab = document.getElementById("amenityPhotoTab");
-const amenityVideoTab = document.getElementById("amenityVideoTab");
 
 const amenityLabel = document.getElementById("amenityLabel");
 const amenityDetailsTitle = document.getElementById("amenityDetailsTitle");
@@ -2015,56 +2067,9 @@ const dropdownMenu = document.getElementById("dropdownMenu");
 const dropdownLabel = document.getElementById("dropdownLabel");
 const dropdownOptions = document.querySelectorAll(".dropdown-option");
 
-function showAmenityPhoto() {
-  amenityVideo.src = "";
-  amenityVideo.style.display = "none";
-  amenityVideoLocal.pause();
-  amenityVideoLocal.removeAttribute("src");
-  amenityVideoLocal.load();
-  amenityVideoLocal.style.display = "none";
-  amenityMain.style.display = "block";
-  amenityPhotoTab.classList.add("active");
-  amenityVideoTab.classList.remove("active");
-}
-
-function showAmenityVideo() {
-  amenityMain.style.display = "none";
-  amenityVideoTab.classList.add("active");
-  amenityPhotoTab.classList.remove("active");
-
-  const raw = amenityVideo.dataset.src;
-
-  if (!raw) {
-    amenityVideo.style.display = "none";
-    amenityVideoLocal.style.display = "none";
-    return;
-  }
-
-  if (isLocalVideoFile(raw)) {
-    // Local mp4/webm/etc — play it with a real <video> tag, not the YouTube iframe
-    amenityVideo.src = "";
-    amenityVideo.style.display = "none";
-    amenityVideoLocal.src = raw;
-    amenityVideoLocal.style.display = "block";
-    amenityVideoLocal.play().catch(() => {});
-  } else {
-    // YouTube URL/ID — use the iframe
-    amenityVideoLocal.pause();
-    amenityVideoLocal.removeAttribute("src");
-    amenityVideoLocal.load();
-    amenityVideoLocal.style.display = "none";
-
-    const embed = toYouTubeEmbed(raw);
-    amenityVideo.src = embed ? embed + "?autoplay=1" : "";
-    amenityVideo.style.display = embed ? "block" : "none";
-  }
-}
-
 function setAmenity(id) {
   const data = amenitiesData[id];
   if (!data) return;
-
-  showAmenityPhoto();
 
   thumbs.forEach(t => t.classList.remove("active"));
   const matchingThumb = [...thumbs].find(t => t.dataset.id === id);
@@ -2075,9 +2080,6 @@ function setAmenity(id) {
   if (matchingOption) matchingOption.classList.add("active");
 
   amenityMain.src = data.src;
-  amenityVideo.src = "";
-  amenityVideo.dataset.src = data.video || "";
-  amenityVideoTab.style.display = data.video ? "block" : "none";
 
   amenityLabel.textContent = data.name;
   dropdownLabel.textContent = data.name;
